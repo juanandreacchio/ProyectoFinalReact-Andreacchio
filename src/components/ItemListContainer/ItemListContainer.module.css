@@ -1,0 +1,11 @@
+.greetingMsg{
+    background-color: #D3D3D3;
+    padding: 20px;
+}
+
+/* Dark Mode*/
+
+.itemListDm > h2{
+    background-color: #0D1117;
+    color: white;
+}

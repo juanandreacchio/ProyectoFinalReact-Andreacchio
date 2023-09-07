@@ -1,0 +1,42 @@
+.detailContainer{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+}
+
+.detailTitle{
+    font-size: 25px;
+}
+
+.detailCategory{
+    font-size: 15px;
+    color: #808080;
+}
+
+.detailRight{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 50%;
+    background-color: #F7F7F7;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.detailLeft{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detailDescription{
+    margin: 10px 0;
+    font-size: 12px;
+    font-weight: lighter;
+}
+
+.detailPrice{
+    font-size: 25px;
+    font-weight: bold;
+}

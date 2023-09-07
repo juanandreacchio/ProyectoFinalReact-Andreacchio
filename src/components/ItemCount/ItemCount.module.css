@@ -1,0 +1,34 @@
+.itemCountContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #D3D3D3;
+    padding: 0 10px;
+    margin-top: 10px;
+}
+
+.addDecBtn{
+    width: fit-content;
+    font-size: 20px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.addCartBtn{
+    margin-top: 10px;
+    width: 100%;
+    border: none;
+    background-color: #D3D3D3;
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all .3s;
+}
+
+.addCartBtn:hover{
+    cursor: pointer;
+    background-color: #8f8f8f;
+}

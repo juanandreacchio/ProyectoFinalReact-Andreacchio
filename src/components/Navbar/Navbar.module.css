@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600;800&display=swap');
+
+
+:root{
+    --light-gray: #F6F8FA;
+    --timberwolf: #D3D3D3;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Manrope', sans-serif;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--light-gray);
+    align-items: center;
+    padding: 0 20px;
+}
+
+
+
+.navTitle{
+    font-size: 30px;
+    color: black;
+    font-weight: bold;
+}
+
+.navItem{
+    display: inline-block;
+    padding: 20px;
+    transition: all .3s;
+    border-bottom: 2px solid var(--light-gray);
+    text-decoration: none;
+    color: black;
+}
+
+.navItemActive{
+    display: inline-block;
+    padding: 20px;
+    transition: all .3s;
+    border-bottom: 2px solid var(--light-gray);
+    background-color: #D3D3D3;
+    border-color: black;
+    color: black;
+}
+
+
+.navItem:hover{
+    cursor: pointer;
+    border-color: black;
+    background-color: var(--timberwolf);
+}
+
+.navItem > a{
+    color: black;
+}
+
+/*Dark mode*/
+
+.navDM{
+    background-color: #010409;
+}
+
+.navDM > h2{
+    color: white;
+}
+
+.navDM .navItem{
+    border-color: #010409;
+}
+
+.navDM li a{
+    color: white;
+}
+
+.navDM .navItem:hover{
+    background-color: #0D1117;
+    border-bottom: 2px solid white;
+}
