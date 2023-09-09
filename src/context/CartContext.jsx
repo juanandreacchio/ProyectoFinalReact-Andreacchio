@@ -12,7 +12,13 @@ export const CartProvider = ({ children }) => {
             setCart(prev => [...prev, productToAdd])
         }
         else {
-            console.log('Esta en el carrito');
+            const updatedCart = cart.map(prod =>{
+                if (prod.id === productToAdd.id){
+                    prod.quantity+= productToAdd.quantity
+                }
+                return prod;
+            })
+            setCart(updatedCart);
         }
     }
 
@@ -33,8 +39,30 @@ export const CartProvider = ({ children }) => {
     
     const totalQuantity = getTotalQuantity();
 
+    const removeItem = (id) =>{
+        const updatedCart = cart.filter(prod => prod.id != id)
+        setCart(updatedCart)
+    }
+
+    const cleanCart = () =>{
+        setCart([])
+    }
+
+    const getTotalPrice = () =>{
+        let totalPrice = 0
+
+        cart.forEach(prod => {
+            let itemPrice = prod.price * prod.quantity
+            totalPrice += itemPrice
+        });
+
+        return totalPrice;
+    }
+
+    const totalPrice = getTotalPrice();
+
     return (
-        <CartContext.Provider value={{ cart, addItem, totalQuantity }}>
+        <CartContext.Provider value={{ cart, addItem, totalQuantity, totalPrice, removeItem, cleanCart }}>
             {children}
         </CartContext.Provider>
     )
