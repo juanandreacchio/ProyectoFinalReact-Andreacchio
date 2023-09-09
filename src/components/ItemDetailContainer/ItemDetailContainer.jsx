@@ -22,7 +22,7 @@ useEffect(() =>{
 
 return(
     <div className={classes.detailContainer}>
-        {producto && < ItemDetail {...producto} key={producto.id} />}
+        {producto && < ItemDetail {...producto} />}
     </div>
 )
 

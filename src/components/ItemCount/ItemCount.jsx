@@ -2,7 +2,7 @@
 import { useState } from "react"
 import classes from './ItemCount.module.css'
 
-export const ItemCount = ({ stock, initial, onAdd }) => {
+export const ItemCount = ({ stock, initial, onAdd, }) => {
 
     const [quantity, setQuantity] = useState(initial);
 

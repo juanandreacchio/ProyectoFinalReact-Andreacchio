@@ -24,7 +24,7 @@ const productos = [
         title: "NBA 2K24 Black Mamba - Playstation 5",
         img: 'https://res.cloudinary.com/dmiy7cyjx/image/upload/v1692299417/CursoReact/Juegos/PS5%20%28JIC%29/nba2k24_zgqtsr.png',
         description: 'Descripción del producto',
-        stock: 80
+        stock: 0
     },    
     {
         id: '4',

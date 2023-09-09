@@ -1,15 +1,26 @@
 
+import { useContext } from "react"
 import { ItemCount } from "../ItemCount/ItemCount"
 import classes from './ItemDetail.module.css'
+import { CartContext, useCart } from "../../context/CartContext"
 
 export const ItemDetail = ({ id, category, price, title, img, description, stock }) => {
 
+    const handleOnAdd = (quantity) =>{
+        const objProductToAdd = {
+            id, title, price, quantity
+        }
+        addItem(objProductToAdd);
+        console.log(`Agregaste ${quantity} productos`);
+    }
+
+    const { addItem } = useCart()
 
     return (
         <div className={classes.detailContainer}>
-            <div className={classes.detailLeft}>
+            <picture className={classes.detailLeft}>
             <img src={img} alt={title} />
-            </div>
+            </picture>
             <div className={classes.detailRight}>
                 <div>
                 <h1 className={classes.detailTitle}>{title}</h1>
@@ -18,10 +29,7 @@ export const ItemDetail = ({ id, category, price, title, img, description, stock
                 </div>
                 <div>
                 <p className={classes.detailPrice}>${price}</p>
-                < ItemCount stock={stock} initial={1} onAdd={(quantity) => {
-                    console.log(title, " ",price, " ",quantity );
-                    console.log(`Cantidad agregada: ${quantity}`);
-                } } />
+                {stock ? < ItemCount stock={stock} initial={1} onAdd={quantity => handleOnAdd(quantity) } /> : <p>Producto sin stock online</p>}
                 </div>
             </div>
         </div>

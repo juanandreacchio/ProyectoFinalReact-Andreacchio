@@ -70,3 +70,25 @@ img{
     font-size: 11.5px;
     color: #808080;
 }
+.noStockContainer{
+    position: relative;
+}
+
+.noStockImg{
+    filter: grayscale(100%);
+    opacity: .6;
+}
+
+.noStockText{
+    position: absolute;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    padding: 5px 10px;
+    border: 2px solid white;
+}
