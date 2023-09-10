@@ -17,3 +17,8 @@
     top: 10px;
     right: 10%;
 }
+
+.cartWidget.dm .numberCart{
+    background-color: #0D1117;
+    color: white;
+}

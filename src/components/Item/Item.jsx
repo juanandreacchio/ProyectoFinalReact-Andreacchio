@@ -2,14 +2,16 @@ import { Link } from 'react-router-dom'
 import classes from './Item.module.css'
 import { useContext } from 'react'
 import { MiContext } from '../../App'
+import { useMode } from '../../context/ModeContext'
 
-export const Item = ({id, category, price, title, img, description,stock}) =>{
+export const Item = ({id, price, title, img, stock}) =>{
 
-    const value = useContext(MiContext)
+
+    const { mode } = useMode();
 
     return (
         <Link to={`/detail/${id}`} >
-        <div className={`${classes.itemBox}`}>
+        <div className={mode === 'light' ? `${classes.itemBox}` : `${classes.itemBox} ${classes.dm}`}>
             <div className={classes.prodImg}>
             {stock ? <img src={img} alt={title} /> : <div className={classes.noStockContainer}>
                 <img src={img} alt={title} className={classes.noStockImg} />

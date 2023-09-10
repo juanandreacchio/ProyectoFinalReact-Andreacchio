@@ -12,6 +12,15 @@
     background-color: #0D1117;
 }
 
+.itemBox.dm .detailBtn{
+    background-color: #07090c;
+    color: white;
+}
+
+.itemBox.dm .detailBtn:hover{
+    background-color: #020203;
+}
+
 .itemBox:hover{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #F6F8FA;
@@ -21,6 +30,8 @@
 .itemBox:hover img{
     transform: scale(1.05);
 }
+
+
 
 .prodImg{
     width: 100%;

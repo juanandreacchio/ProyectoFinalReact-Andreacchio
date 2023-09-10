@@ -31,6 +31,13 @@ nav{
     font-weight: bold;
 }
 
+.cartAndSwitch{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+}
+
 .navItem{
     display: inline-block;
     padding: 20px;
@@ -67,16 +74,19 @@ nav{
     background-color: #010409;
 }
 
-.navDM > h2{
+.navDM .navTitle{
     color: white;
 }
 
 .navDM .navItem{
     border-color: #010409;
+    color: white;
 }
 
-.navDM li a{
+.navDM .navItemActive{
+    background-color: #0D1117;
     color: white;
+    border-bottom: 2px solid white;
 }
 
 .navDM .navItem:hover{

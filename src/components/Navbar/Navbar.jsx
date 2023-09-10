@@ -1,10 +1,15 @@
 import { NavLink, Link } from 'react-router-dom'
 import { CartWidget } from '../CartWidget/CartWidget'
 import classes from './Navbar.module.css'
+import { useMode } from '../../context/ModeContext';
+import { SwitchBtn } from '../SwitchBtn/SwitchBtn';
 
 export const Navbar = () =>{
+
+    const { mode } = useMode();
+
     return(
-        <nav>
+        <nav className={mode === 'dark' && `${classes.navDM}` || ''}>
             <Link to='/' className={classes.navTitle}>TElectronics</Link>
             <section>
                 <ul>
@@ -14,7 +19,10 @@ export const Navbar = () =>{
                     <NavLink to='/category/Celulares' className={({ isActive }) => isActive? classes.navItemActive : classes.navItem }>Celulares</NavLink>
                 </ul>
             </section>
+            <div className={classes.cartAndSwitch}>
+            <SwitchBtn />
             < CartWidget />
+            </div>
         </nav>
     )
 }

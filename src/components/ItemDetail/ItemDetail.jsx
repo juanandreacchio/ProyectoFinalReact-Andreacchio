@@ -3,6 +3,7 @@ import { useContext } from "react"
 import { ItemCount } from "../ItemCount/ItemCount"
 import classes from './ItemDetail.module.css'
 import { CartContext, useCart } from "../../context/CartContext"
+import { useMode } from "../../context/ModeContext"
 
 export const ItemDetail = ({ id, category, price, title, img, description, stock }) => {
 
@@ -16,8 +17,10 @@ export const ItemDetail = ({ id, category, price, title, img, description, stock
 
     const { addItem } = useCart()
 
+    const { mode } = useMode()
+
     return (
-        <div className={classes.detailContainer}>
+        <div className={mode === 'light' ? `${classes.detailContainer}` : `${classes.detailContainer} ${classes.detailDM}`}>
             <picture className={classes.detailLeft}>
             <img src={img} alt={title} />
             </picture>

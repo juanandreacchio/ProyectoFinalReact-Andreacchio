@@ -40,3 +40,15 @@
     font-size: 25px;
     font-weight: bold;
 }
+
+/* Dark Mode */
+
+.detailDM .detailTitle,
+.detailDM .detailDescription,
+.detailDM .detailPrice{
+    color: white;
+}
+
+.detailDM .detailRight{
+    background-color: #0D1117;
+}

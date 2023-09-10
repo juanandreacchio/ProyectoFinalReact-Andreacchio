@@ -5,7 +5,8 @@
 
 /* Dark Mode*/
 
-.itemListDm > h2{
+.itemListDm > .greetingMsg{
     background-color: #0D1117;
     color: white;
 }
+

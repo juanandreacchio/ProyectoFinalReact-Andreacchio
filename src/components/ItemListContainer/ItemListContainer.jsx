@@ -3,6 +3,7 @@ import { ItemList } from '../ItemList/ItemList'
 import classes from './ItemListContainer.module.css'
 import { getProductByCategory, getProducts } from '../../asyncMock';
 import { useParams } from 'react-router-dom';
+import { useMode } from '../../context/ModeContext';
 
 
 export const ItemListContainer = (props) =>{
@@ -19,8 +20,10 @@ export const ItemListContainer = (props) =>{
     }, [categoryId])
     
 
+    const { mode } = useMode();
+
     return (
-        <div>
+        <div className={mode === 'dark' && `${classes.itemListDm}` || ''}>
             <h2 className={classes.greetingMsg}>{props.greeting}</h2>
             <ItemList products={productos}/>
         </div>

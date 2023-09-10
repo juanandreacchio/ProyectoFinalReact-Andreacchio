@@ -1,0 +1,45 @@
+
+.btnCircle{
+    display: block;
+    width: 50%;
+    height: 20px;
+    border-radius: 20px;
+    background-color: white;
+    transition: all .3s;
+}
+
+.circleLight{
+    margin-right: auto;
+}
+
+.circleDark{
+    margin-left: auto;
+}
+
+.switchBtn{
+    width: 50px;
+    border-radius: 20px;
+    border: none;
+    padding: 5px;
+    height: 30px;
+    margin: 0px 10px;
+    cursor: pointer;
+}
+
+.switchLight{
+    background-color: #D3D3D3;
+}
+
+.switchDark{
+    background-color: #0D1117;
+}
+
+.iconSwitch{
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+}
+
+.iconDisabled{
+    opacity: .3;
+}
