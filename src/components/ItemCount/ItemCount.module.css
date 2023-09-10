@@ -32,3 +32,19 @@
     cursor: pointer;
     background-color: #8f8f8f;
 }
+
+/* Dark mode */
+
+.countContainerDM .addDecBtn,
+.countContainerDM span{
+    color: white;
+}
+
+.countContainerDM .addCartBtn{
+    background-color: #07090c;
+    color: white;
+}
+
+.countContainerDM .addCartBtn:hover{
+    background-color: #020203;
+}

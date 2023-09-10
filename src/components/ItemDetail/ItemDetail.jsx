@@ -1,8 +1,7 @@
 
-import { useContext } from "react"
 import { ItemCount } from "../ItemCount/ItemCount"
 import classes from './ItemDetail.module.css'
-import { CartContext, useCart } from "../../context/CartContext"
+import { useCart } from "../../context/CartContext"
 import { useMode } from "../../context/ModeContext"
 
 export const ItemDetail = ({ id, category, price, title, img, description, stock }) => {
