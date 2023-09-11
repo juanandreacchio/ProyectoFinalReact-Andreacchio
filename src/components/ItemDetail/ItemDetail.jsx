@@ -26,7 +26,7 @@ export const ItemDetail = ({ id, category, price, title, img, description, stock
             <div className={classes.detailRight}>
                 <div>
                 <h1 className={classes.detailTitle}>{title}</h1>
-                <p className={classes.detailCategory}>Category: {category}</p>
+                <p className={classes.detailCategory}>Categoría: {category}</p>
                 <p className={classes.detailDescription}>{description}</p>
                 </div>
                 <div>

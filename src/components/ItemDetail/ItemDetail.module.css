@@ -5,7 +5,7 @@
 }
 
 .detailTitle{
-    font-size: 25px;
+    font-size: 35px;
 }
 
 .detailCategory{
@@ -20,7 +20,7 @@
     width: 50%;
     background-color: #F7F7F7;
     box-sizing: border-box;
-    padding: 15px;
+    padding: 30px 20px;
 }
 
 .detailLeft{
@@ -37,7 +37,7 @@
 }
 
 .detailPrice{
-    font-size: 25px;
+    font-size: 35px;
     font-weight: bold;
 }
 
