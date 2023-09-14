@@ -2,6 +2,8 @@ import { ItemCount } from "../ItemCount/ItemCount";
 import classes from "./ItemDetail.module.css";
 import { useCart } from "../../context/CartContext";
 import { useMode } from "../../context/ModeContext";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export const ItemDetail = ({
     id,
@@ -21,14 +23,17 @@ export const ItemDetail = ({
             img
         };
         addItem(objProductToAdd);
+        setQuantityAdded(quantity)
         console.log(`Agregaste ${quantity} productos`);
     };
+
+    const [quantityAdded, setQuantityAdded] = useState(0)
 
     const { addItem } = useCart();
 
     const { mode } = useMode();
 
-
+    console.log(quantityAdded);
     return (
         <div
             className={
@@ -50,11 +55,16 @@ export const ItemDetail = ({
                     <div>
                         <p className={classes.detailPrice}>${price}</p>
                         {stock ? (
-                            <ItemCount
-                                stock={stock}
-                                initial={1}
-                                onAdd={(quantity) => handleOnAdd(quantity)}
-                            />
+                                quantityAdded === 0 ?
+                                (
+                                    <ItemCount
+                                    stock={stock}
+                                    initial={1}
+                                    onAdd={(quantity) => handleOnAdd(quantity)}
+                                />
+                                ) : (
+                                    < Link to='/cart' className={classes.finalizarCompraBtn}>Finalizar compra</Link>
+                                )
                         ) : (
                             <p>Producto sin stock online</p>
                         )}

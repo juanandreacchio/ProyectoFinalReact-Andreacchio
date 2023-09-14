@@ -23,7 +23,7 @@ export const Cart = () => {
             </div>
             <CartList />
             <div className={classes.cartContainerBottom}>
-            <p className={classes.totalPrice}>Total: ${totalPrice}</p>
+            <p className={classes.totalPrice}>Total: ${totalPrice.toFixed(2)}</p>
             <div className={classes.actionBtns}>
               <button onClick={cleanCart} className={classes.actionBtn}>Vaciar carrito</button>
               <button className={classes.actionBtn}>Comprar</button>

@@ -6,6 +6,7 @@ export const ItemCount = ({ stock, initial, onAdd, }) => {
 
     const [quantity, setQuantity] = useState(initial);
 
+
     const increment = () => {
         quantity < stock && setQuantity(quantity + 1);
     }
@@ -24,6 +25,7 @@ export const ItemCount = ({ stock, initial, onAdd, }) => {
                 <button onClick={increment} className={classes.addDecBtn}>+</button>
             </div>
             <div>
+                
                 <button onClick={() => onAdd(quantity)} className={classes.addCartBtn} disabled={!stock}>Añadir al carrito</button>
             </div>
             </div>
