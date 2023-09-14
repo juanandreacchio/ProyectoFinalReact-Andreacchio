@@ -4,7 +4,7 @@ import trash from './assets/trash.svg'
 import { useMode } from '../../context/ModeContext'
 
 
-export const CartProduct = ({ id, title, price, quantity, img }) => {
+export const CartItem = ({ id, title, price, quantity, img }) => {
   const { removeItem } = useCart();
 
   const { mode } = useMode();

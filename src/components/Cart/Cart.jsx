@@ -1,4 +1,4 @@
-import classes from './CartContainer.module.css'
+import classes from './Cart.module.css'
 import { CartList } from "../CartList/CartList"
 import { useCart } from '../../context/CartContext'
 import { Link } from 'react-router-dom'

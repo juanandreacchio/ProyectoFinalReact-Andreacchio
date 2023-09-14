@@ -1,5 +1,5 @@
 import { useCart } from "../../context/CartContext";
-import { CartProduct } from "../CartProduct/CartProduct";
+import { CartItem } from "../CartItem/CartProduct";
 
 export const CartList = () => {
   const { cart, totalQuantity } = useCart();
@@ -7,7 +7,7 @@ export const CartList = () => {
   return (
     <div>
       {cart.map((producto) => {
-        return <CartProduct {...producto} key={producto.id} />;
+        return <CartItem {...producto} key={producto.id} />;
       })}
     </div>
   );
