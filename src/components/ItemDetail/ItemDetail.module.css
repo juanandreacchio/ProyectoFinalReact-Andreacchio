@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     width: 90%;
+    flex-direction: column;
 }
 
 .detailTitle{
@@ -11,6 +12,10 @@
 .detailCategory{
     font-size: 15px;
     color: #808080;
+}
+
+.detailContainerTop{
+    display: flex;
 }
 
 .detailRight{
@@ -28,17 +33,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 5px solid #F7F7F7;
 }
 
 .detailDescription{
-    margin: 10px 0;
-    font-size: 12px;
+    padding: 5px 10px;
+    border:5px solid #F7F7F7;
+    font-size: 15px;
     font-weight: lighter;
 }
 
 .detailPrice{
     font-size: 35px;
     font-weight: bold;
+}
+
+.descriptionTitle{
+    font-size: 20px;
+    border:5px solid #F7F7F7;
+    width: fit-content;
+    padding: 5px 10px;
+    font-weight: lighter;
+    border-bottom: none;
+    display: inline-block;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.detailContainerBottom{
+    margin-top: 20px;
+}
+
+.descriptionTitleActive{
+    background-color: #F7F7F7;
+}
+
+.detailDescription {
+    white-space: pre-line;
+    margin: 0px 0;
 }
 
 /* Dark Mode */
@@ -49,6 +81,17 @@
     color: white;
 }
 
+.detailDM .descriptionTitle,
+.detailDM .detailDescription{
+    border-color: #0D1117;
+    color: white;
+}
+
+
 .detailDM .detailRight{
     background-color: #0D1117;
+}
+
+.detailDM .detailLeft{
+    border-color: #0D1117;
 }

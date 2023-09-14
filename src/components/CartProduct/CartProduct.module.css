@@ -1,0 +1,50 @@
+.cartProdContainer{
+    padding: 15px 0;
+    border-bottom: 1px solid black;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 0.5fr;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+picture{
+    width: 30%;
+}
+
+.cartProductIMG{
+    width: 85%;
+}
+
+.cartProdLeft{
+    display: flex;
+    align-items: center;
+}
+
+.deleteBtn{
+    cursor: pointer;
+    background-color: transparent;
+    border: 3px solid #EF271B;
+    width: 50%;
+    text-align: center;
+    padding: 20px 10px;
+    border-radius: 15px;
+    transition: all .3s;
+}
+
+.deleteBtn:hover{
+    background-color: #8E1A13;
+    background-color: #F6F8FA;
+}
+
+.cartProdContainerDM{
+    color: white;
+}
+
+.cartProdContainerDM.cartProdContainer{
+    border-bottom: 1px solid white;
+}
+
+.cartProdContainerDM .deleteBtn:hover{
+    background-color: #020203;
+}

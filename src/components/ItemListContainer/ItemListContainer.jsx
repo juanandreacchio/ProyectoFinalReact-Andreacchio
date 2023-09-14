@@ -23,14 +23,13 @@ export const ItemListContainer = (props) =>{
                 setProductos(result)
                 setLoading(true);
             })
-        
     }, [categoryId])
     
 
     const { mode } = useMode();
 
     return (
-        <div className={mode === 'dark' && `${classes.itemListDm}` || ''}>
+        <div className={mode === 'dark' && `${classes.itemListDm} ${classes.itemList}` || `${classes.itemList}`}>
             <h2 className={classes.greetingMsg}>{props.greeting}</h2>
             {loading ? <ItemList products={productos}/> : <SpinnerCircular size="20%" color='black' style={{width: '100%', margin: '0 auto', height: '200px', marginTop: '50px'}}/> }
         </div>

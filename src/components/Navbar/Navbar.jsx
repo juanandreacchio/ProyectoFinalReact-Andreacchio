@@ -21,7 +21,7 @@ export const Navbar = () =>{
             </section>
             <div className={classes.cartAndSwitch}>
             <SwitchBtn />
-            < CartWidget />
+            <Link to='/cart'>< CartWidget /></Link>
             </div>
         </nav>
     )

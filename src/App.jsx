@@ -6,12 +6,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ItemDetailContainer } from "./components/ItemDetailContainer/ItemDetailContainer";
 import { CartProvider } from "./context/CartContext";
 import { ModeProvider } from "./context/ModeContext";
+import { CartContainer } from './components/CartContainer/CartContainer'
 
 export const MiContext = createContext();
 
 function App() {
+
+
   return (
-    <>
+    <div>
       <ModeProvider>
         <CartProvider>
           <BrowserRouter>
@@ -34,11 +37,12 @@ function App() {
                 element={<ItemDetailContainer />}
               />
               <Route path="*" element={<h1>Not Found</h1>} />
+              <Route path="/cart" element={<CartContainer />} />
             </Routes>
           </BrowserRouter>
         </CartProvider>
       </ModeProvider>
-    </>
+      </div>
   );
 }
 

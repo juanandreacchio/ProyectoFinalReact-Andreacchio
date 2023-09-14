@@ -10,3 +10,12 @@
     color: white;
 }
 
+
+.itemList{
+    min-height: 90vh;
+    max-height: 100%;
+}
+
+.itemListDm{
+    background-color: #010409;
+}

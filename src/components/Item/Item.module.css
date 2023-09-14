@@ -38,7 +38,7 @@
     text-align: center;
 }
 
-img{
+.itemIMG{
     width: 80%;
     object-fit: cover;
     margin: 0 auto;
@@ -88,6 +88,10 @@ img{
 .noStockImg{
     filter: grayscale(100%);
     opacity: .6;
+    object-fit: cover;
+    margin: 0 auto;
+    transition: all .3s;
+    width: 80%;
 }
 
 .noStockText{
