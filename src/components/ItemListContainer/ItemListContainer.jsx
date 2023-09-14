@@ -21,6 +21,8 @@ export const ItemListContainer = (props) =>{
         asyncFunction(categoryId)
             .then(result => {
                 setProductos(result)
+            })
+            .finally(() =>{
                 setLoading(true);
             })
     }, [categoryId])
