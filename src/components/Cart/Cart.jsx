@@ -4,7 +4,7 @@ import { useCart } from '../../context/CartContext'
 import { Link } from 'react-router-dom'
 import { useMode } from '../../context/ModeContext'
 
-export const CartContainer = () => {
+export const Cart = () => {
 
     const { totalPrice, cleanCart, totalQuantity } = useCart()
 

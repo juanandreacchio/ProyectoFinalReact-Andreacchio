@@ -3,10 +3,12 @@ import { CartWidget } from '../CartWidget/CartWidget'
 import classes from './Navbar.module.css'
 import { useMode } from '../../context/ModeContext';
 import { SwitchBtn } from '../SwitchBtn/SwitchBtn';
+import { useCart } from '../../context/CartContext';
 
 export const Navbar = () =>{
 
     const { mode } = useMode();
+    const { totalQuantity } = useCart();
 
     return(
         <nav className={mode === 'dark' && `${classes.navDM}` || ''}>
@@ -21,7 +23,7 @@ export const Navbar = () =>{
             </section>
             <div className={classes.cartAndSwitch}>
             <SwitchBtn />
-            <Link to='/cart'>< CartWidget /></Link>
+            {totalQuantity > 0 && <Link to='/cart'>< CartWidget /></Link>}
             </div>
         </nav>
     )

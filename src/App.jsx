@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ItemDetailContainer } from "./components/ItemDetailContainer/ItemDetailContainer";
 import { CartProvider } from "./context/CartContext";
 import { ModeProvider } from "./context/ModeContext";
-import { CartContainer } from './components/CartContainer/CartContainer'
+import { Cart } from "./components/Cart/Cart"
 
 export const MiContext = createContext();
 
@@ -37,7 +37,7 @@ function App() {
                 element={<ItemDetailContainer />}
               />
               <Route path="*" element={<h1>Not Found</h1>} />
-              <Route path="/cart" element={<CartContainer />} />
+              <Route path="/cart" element={<Cart />} />
             </Routes>
           </BrowserRouter>
         </CartProvider>
