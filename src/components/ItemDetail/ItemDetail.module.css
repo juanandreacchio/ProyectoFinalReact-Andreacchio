@@ -124,3 +124,7 @@
 .detailDM .finalizarCompraBtn:hover{
     background-color: #020203;
 }
+
+.detailDM .noStockText{
+    color: white;
+}

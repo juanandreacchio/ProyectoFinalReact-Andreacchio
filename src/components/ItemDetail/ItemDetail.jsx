@@ -33,7 +33,6 @@ export const ItemDetail = ({
 
     const { mode } = useMode();
 
-    console.log(quantityAdded);
     return (
         <div
             className={
@@ -66,7 +65,7 @@ export const ItemDetail = ({
                                     < Link to='/cart' className={classes.finalizarCompraBtn}>Finalizar compra</Link>
                                 )
                         ) : (
-                            <p>Producto sin stock online</p>
+                            <p className={classes.noStockText}>Producto sin stock online</p>
                         )}
                     </div>
                 </div>

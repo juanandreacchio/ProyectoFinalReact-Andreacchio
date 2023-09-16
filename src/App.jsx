@@ -7,6 +7,7 @@ import { ItemDetailContainer } from "./components/ItemDetailContainer/ItemDetail
 import { CartProvider } from "./context/CartContext";
 import { ModeProvider } from "./context/ModeContext";
 import { Cart } from "./components/Cart/Cart"
+import { Checkout } from "./components/Checkout/Checkout";
 
 export const MiContext = createContext();
 
@@ -14,7 +15,7 @@ function App() {
 
 
   return (
-    <div>
+    <>
       <ModeProvider>
         <CartProvider>
           <BrowserRouter>
@@ -38,11 +39,12 @@ function App() {
               />
               <Route path="*" element={<h1>Not Found</h1>} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<Checkout />} />
             </Routes>
           </BrowserRouter>
         </CartProvider>
       </ModeProvider>
-      </div>
+      </>
   );
 }
 

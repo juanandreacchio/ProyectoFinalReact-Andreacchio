@@ -26,7 +26,7 @@ export const Cart = () => {
             <p className={classes.totalPrice}>Total: ${totalPrice.toFixed(2)}</p>
             <div className={classes.actionBtns}>
               <button onClick={cleanCart} className={classes.actionBtn}>Vaciar carrito</button>
-              <button className={classes.actionBtn}>Comprar</button>
+              <Link to='/checkout' className={classes.actionBtn}>Comprar</Link>
             </div>
           </div>
           </div>
