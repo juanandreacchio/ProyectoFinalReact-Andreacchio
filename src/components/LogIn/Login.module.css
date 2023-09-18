@@ -80,3 +80,43 @@
     cursor: pointer;
 }
 
+.signOutBtn{
+    cursor: pointer;
+    margin-left: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all .3s;
+}
+
+.signOutBtn:hover{
+    background-color: rgb(206, 2, 2);
+}
+
+/* Dark mode*/
+
+.loginContainerDM{
+    background-color: var(--dm-principal-bg);
+    color: white;
+}
+
+.loginContainerDM .googleLogin,
+.loginContainerDM .inputLogin{
+    color: white;
+    background-color: transparent;
+}
+
+.loginContainerDM .inputLogin{
+    border: 1px solid white
+}
+
+.loginContainerDM .loginBtn{
+    background-color: #07090c;
+    color: white;
+}
+
+.loginContainerDM .loginBtn:hover{
+    background-color: #020203;
+}

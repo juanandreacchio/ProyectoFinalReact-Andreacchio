@@ -11,6 +11,7 @@ import { Checkout } from "./components/Checkout/Checkout";
 import { Login } from "./components/LogIn/Login";
 import { LoginProvider } from "./context/LogInContext";
 import { Profile } from "./components/Profile/Profile";
+import { Register } from "./components/Register/Register";
 
 export const MiContext = createContext();
 
@@ -46,6 +47,7 @@ function App() {
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/register" element={<Register />} />
             </Routes>
           </BrowserRouter>
         </CartProvider>

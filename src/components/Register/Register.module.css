@@ -1,0 +1,62 @@
+.registroContainer{
+    height: 90vh;
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.registerInputContainer{
+    margin: 10px 0;
+}
+
+.inputRegister{
+    display: block;
+    font-size: 20px;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.errorMsg{
+    color: red;
+}
+
+.registerBtn{
+    margin-top: 10px;
+    width: 100%;
+    border: none;
+    background-color: #D3D3D3;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all .3s;
+    font-size: 20px;
+}
+
+.registerBtn:hover{
+    cursor: pointer;
+    background-color: #8f8f8f;
+}
+
+.registroContainerDM{
+    color: white;
+    background-color: var(--dm-principal-bg);
+}
+
+.registroContainerDM .inputRegister{
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+}
+
+.registroContainerDM .registerBtn{
+    background-color: #07090c;
+    color: white;
+}
+
+.registroContainerDM .registerBtn:hover{
+    background-color: #020203;
+}

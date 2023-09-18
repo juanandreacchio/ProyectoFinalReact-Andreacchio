@@ -8,6 +8,7 @@ export const LoginProvider = ({ children }) => {
   const [userEmail, setUserEmail] = useState('');
   const [userPhoto, setUserPhoto] = useState('');
   const [userName, setUserName] = useState('');
+  const [errorCode, setErrorCode] = useState('')
 
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
@@ -21,6 +22,7 @@ export const LoginProvider = ({ children }) => {
         setUserEmail(result.user.email)
         setUserPhoto(result.user.photoURL);
         setUserName(result.user.displayName);
+        setErrorCode('')
         setLogged(true);
       })
       .catch((error) => {
@@ -40,26 +42,23 @@ export const LoginProvider = ({ children }) => {
         setUserPhoto(user.photoURL);
         setUserName(user.displayName);
         setUserEmail(user.email);
-        console.log('Logeado correctamente');
-        console.log(user);
+        setErrorCode('')
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setErrorCode(errorCode)
       });
   };
 
-  const register = (email, password) => {
+  const register = (email, password, name) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
-        console.log(user.email);
-        setUserEmail(user.email);
-        
         updateProfile(user, {
-          photoURL: "https://res.cloudinary.com/dmiy7cyjx/image/upload/v1695000251/CursoReact/profileDefault_uffvnj.png"
+          photoURL: "https://res.cloudinary.com/dmiy7cyjx/image/upload/v1695044831/CursoReact/profilePhoto_fybqg5.png", displayName: name
         })
+        setErrorCode('')
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -79,7 +78,7 @@ export const LoginProvider = ({ children }) => {
   }
 
   return (
-    <LoginContext.Provider value={{ logged, loginGoogle, login, register, logout, userEmail, userPhoto, userName }}>
+    <LoginContext.Provider value={{ logged, loginGoogle, login, register, logout, userEmail, userPhoto, userName, errorCode }}>
       {children}
     </LoginContext.Provider>
   );
