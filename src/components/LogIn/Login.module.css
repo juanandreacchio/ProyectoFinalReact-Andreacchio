@@ -117,6 +117,7 @@
     color: white;
 }
 
-.loginContainerDM .loginBtn:hover{
+.loginContainerDM .loginBtn:hover,
+.loginContainerDM .loginContainerGoogle:hover{
     background-color: #020203;
 }

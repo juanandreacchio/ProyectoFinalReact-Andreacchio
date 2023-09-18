@@ -1,0 +1,62 @@
+.profileContainer{
+    min-height: 90vh;
+    max-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.profileTitle{
+    margin-bottom: 20px;
+}
+
+.inputProfile::placeholder{
+    color: black;
+    opacity: .8;
+    font-size: 20px;
+}
+
+.inputProfile{
+    font-size: 28px;
+    padding: 0 8px;
+}
+
+.profileHeader{
+    font-size: 15px;
+    text-align: start;
+    margin: 10px 0;
+}
+
+.logOutBtn{
+    padding: 5px 15px;
+    margin: 10px 0;
+    color: white;
+    background-color: red;
+    border: none;
+    border-radius: 10px;
+    transition: all .3s;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.logOutBtn:hover{
+    background-color: rgb(189, 2, 2);
+}
+
+/* Dark mode */
+
+.profileContainerDM{
+    background-color: var(--dm-principal-bg);
+    color: white;
+}
+
+.profileContainerDM .inputProfile{
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+.profileContainerDM .inputProfile::placeholder{
+    color: white;
+}

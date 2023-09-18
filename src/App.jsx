@@ -10,8 +10,8 @@ import { Cart } from "./components/Cart/Cart"
 import { Checkout } from "./components/Checkout/Checkout";
 import { Login } from "./components/LogIn/Login";
 import { LoginProvider } from "./context/LogInContext";
-import { Profile } from "./components/Profile/Profile";
 import { Register } from "./components/Register/Register";
+import { Profile } from "./components/Profile/Profile";
 
 export const MiContext = createContext();
 
@@ -46,8 +46,8 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/profile" element={<Profile />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
           </BrowserRouter>
         </CartProvider>

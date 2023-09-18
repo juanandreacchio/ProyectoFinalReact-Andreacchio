@@ -11,12 +11,11 @@ import {
   addDoc,
 } from "firebase/firestore";
 import { Formik } from "formik";
-import { useState } from "react";
+import { createRef, useState } from "react";
 import Cleave from "cleave.js/react";
 import "cleave.js/dist/addons/cleave-phone.i18n";
 import { useMode } from "../../context/ModeContext";
 import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import { useLogIn } from "../../context/LogInContext";
 
 export const Checkout = () => {
@@ -24,8 +23,6 @@ export const Checkout = () => {
   const db = getFirestore();
   const { mode } = useMode();
   const { logged, userName, userEmail } = useLogIn();
-
-  console.log(userEmail);
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -106,7 +103,6 @@ export const Checkout = () => {
       <Formik
         initialValues={{
           name: "",
-          surname: "",
           email: "",
           phone: "",
           expiringDate: "",
@@ -114,6 +110,7 @@ export const Checkout = () => {
           floor: "",
           addres: "",
           cardNumber: "",
+          emailVerification: ""
         }}
         validate={(values) => {
           const errors = {};
@@ -126,9 +123,6 @@ export const Checkout = () => {
           }
           if (!values.name) {
             errors.name = "Requerido";
-          }
-          if (!values.surname) {
-            errors.surname = "Requerido";
           }
           if (!values.addres) {
             errors.addres = "Requerido";
@@ -152,11 +146,11 @@ export const Checkout = () => {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          setSubmitting(false);
           setName(values.name);
           setPhone(values.phone);
           setEmail(values.email);
           createOrder();
+          setSubmitting(false);
         }}
       >
         {({
@@ -174,7 +168,7 @@ export const Checkout = () => {
               {" "}
               {/* Nombre y Apellido */}
               <div>
-                <label htmlFor="name">Nombre</label>
+                <label htmlFor="name">Nombre y Apellido</label>
                 <input
                   type="text"
                   name="name"
@@ -182,27 +176,12 @@ export const Checkout = () => {
                   onBlur={handleBlur}
                   value={values.name}
                   className={classes.inputForm}
-                  placeholder="John"
+                  placeholder="John Doe"
                 />
-                {errors.name && touched.name && errors.name}
+                <p className={classes.errorMsg}>
+                  {errors.name && touched.name && errors.name}
+                </p>
               </div>
-              <div>
-                <label htmlFor="surname">Apellido</label>
-                <input
-                  type="text"
-                  name="surname"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.surname}
-                  className={classes.inputForm}
-                  placeholder="Doe"
-                />
-                {errors.surname && touched.surname && errors.surname}
-              </div>
-            </div>
-            <div className={classes.formGroup}>
-              {" "}
-              {/* Email y Teléfono */}
               <div>
                 <label htmlFor="phone">Teléfono</label>
                 <Cleave
@@ -214,8 +193,14 @@ export const Checkout = () => {
                   onBlur={handleBlur}
                   value={values.phone}
                 />
-                {errors.phone && touched.phone && errors.phone}
+                <p className={classes.errorMsg}>
+                  {errors.phone && touched.phone && errors.phone}
+                </p>
               </div>
+            </div>
+            <div className={classes.formGroup}>
+              {" "}
+              {/* Email y Teléfono */}
               <div>
                 <label htmlFor="email">Email</label>
                 <input
@@ -227,7 +212,26 @@ export const Checkout = () => {
                   className={classes.inputForm}
                   placeholder="email@email.com"
                 />
-                {errors.email && touched.email && errors.email}
+                <p className={classes.errorMsg}>
+                  {errors.email && touched.email && errors.email}
+                </p>
+              </div>
+              <div>
+                <label htmlFor="emailVerification">Verificación de email</label>
+                <input
+                  type="email"
+                  name="emailVerification"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.emailVerification}
+                  className={classes.inputForm}
+                  placeholder="email@email.com"
+                />
+                <p className={classes.errorMsg}>
+                  {errors.emailVerification &&
+                    touched.emailVerification &&
+                    errors.emailVerification}
+                </p>
               </div>
             </div>
             <div className={classes.formGroup}>
@@ -244,7 +248,9 @@ export const Checkout = () => {
                   className={classes.inputForm}
                   placeholder="Calle 123"
                 />
-                {errors.addres && touched.addres && errors.addres}
+                <p className={classes.errorMsg}>
+                  {errors.addres && touched.addres && errors.addres}
+                </p>
               </div>
               <div>
                 <label htmlFor="floor">Piso (Opcional)</label>
@@ -272,7 +278,9 @@ export const Checkout = () => {
                 onBlur={handleBlur}
                 value={values.cardNumber}
               />
-              {errors.cardNumber && touched.cardNumber && errors.cardNumber}
+              <p className={classes.errorMsg}>
+                {errors.cardNumber && touched.cardNumber && errors.cardNumber}
+              </p>
             </div>
             <div className={classes.formGroup}>
               {" "}
@@ -288,9 +296,11 @@ export const Checkout = () => {
                   onBlur={handleBlur}
                   value={values.expiringDate}
                 />
-                {errors.expiringDate &&
-                  touched.expiringDate &&
-                  errors.expiringDate}
+                <p className={classes.errorMsg}>
+                  {errors.expiringDate &&
+                    touched.expiringDate &&
+                    errors.expiringDate}
+                </p>
               </div>
               <div>
                 <label htmlFor="cvv">CVV</label>
@@ -303,7 +313,9 @@ export const Checkout = () => {
                   onBlur={handleBlur}
                   value={values.cvv}
                 />
-                {errors.cvv && touched.cvv && errors.cvv}
+                <p className={classes.errorMsg}>
+                  {errors.cvv && touched.cvv && errors.cvv}
+                </p>
               </div>
             </div>
             <button
@@ -329,7 +341,6 @@ export const Checkout = () => {
       <Formik
         initialValues={{
           name: "",
-          surname: "",
           email: "",
           phone: "",
           expiringDate: "",
@@ -340,19 +351,6 @@ export const Checkout = () => {
         }}
         validate={(values) => {
           const errors = {};
-          if (!values.email) {
-            errors.email = "Requerido";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = "Email inválido";
-          }
-          if (!values.name) {
-            errors.name = "Requerido";
-          }
-          if (!values.surname) {
-            errors.surname = "Requerido";
-          }
           if (!values.addres) {
             errors.addres = "Requerido";
           }
@@ -375,11 +373,11 @@ export const Checkout = () => {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          setSubmitting(false);
-          userName ? setName(userName) : setName(values.name)
+          userName ? setName(userName) : setName(values.name);
           setPhone(values.phone);
           setEmail(userEmail);
           createOrder();
+          setSubmitting(false);
         }}
       >
         {({
@@ -394,29 +392,31 @@ export const Checkout = () => {
         }) => (
           <form onSubmit={handleSubmit}>
             <div className={classes.formGroup}>
-              {" "}
               {/* Nombre y Apellido */}
               <div>
                 <label htmlFor="name">Nombre y apellido</label>
-                {userName ? (                <input
-                  type="text"
-                  name="name"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.name}
-                  className={classes.inputForm}
-                  placeholder= {userName}
-                  disabled
-                />) : (                <input
-                  type="text"
-                  name="name"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.name}
-                  className={classes.inputForm}
-                  placeholder="John Doe"
-                />)}
-                {errors.name && touched.name && errors.name}
+                {userName ? (
+                  <input
+                    type="text"
+                    name="name"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.name}
+                    className={classes.inputForm}
+                    placeholder={userName}
+                    disabled
+                  />
+                ) : (
+                  <input
+                    type="text"
+                    name="name"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.name}
+                    className={classes.inputForm}
+                    placeholder="John Doe"
+                  />
+                )}
               </div>
             </div>
             <div className={classes.formGroup}>
@@ -433,7 +433,9 @@ export const Checkout = () => {
                   onBlur={handleBlur}
                   value={values.phone}
                 />
-                {errors.phone && touched.phone && errors.phone}
+                <p className={classes.errorMsg}>
+                  {errors.phone && touched.phone && errors.phone}
+                </p>
               </div>
               <div>
                 <label htmlFor="email">Email</label>
@@ -444,7 +446,7 @@ export const Checkout = () => {
                   onBlur={handleBlur}
                   value={values.email}
                   className={classes.inputForm}
-                  placeholder= {userEmail}
+                  placeholder={userEmail}
                   disabled
                 />
               </div>
@@ -463,7 +465,9 @@ export const Checkout = () => {
                   className={classes.inputForm}
                   placeholder="Calle 123"
                 />
-                {errors.addres && touched.addres && errors.addres}
+                <p className={classes.errorMsg}>
+                  {errors.addres && touched.addres && errors.addres}
+                </p>
               </div>
               <div>
                 <label htmlFor="floor">Piso (Opcional)</label>
@@ -491,7 +495,9 @@ export const Checkout = () => {
                 onBlur={handleBlur}
                 value={values.cardNumber}
               />
-              {errors.cardNumber && touched.cardNumber && errors.cardNumber}
+              <p className={classes.errorMsg}>
+                {errors.cardNumber && touched.cardNumber && errors.cardNumber}
+              </p>
             </div>
             <div className={classes.formGroup}>
               {" "}
@@ -507,9 +513,11 @@ export const Checkout = () => {
                   onBlur={handleBlur}
                   value={values.expiringDate}
                 />
-                {errors.expiringDate &&
-                  touched.expiringDate &&
-                  errors.expiringDate}
+                <p className={classes.errorMsg}>
+                  {errors.expiringDate &&
+                    touched.expiringDate &&
+                    errors.expiringDate}
+                </p>
               </div>
               <div>
                 <label htmlFor="cvv">CVV</label>
@@ -522,7 +530,9 @@ export const Checkout = () => {
                   onBlur={handleBlur}
                   value={values.cvv}
                 />
-                {errors.cvv && touched.cvv && errors.cvv}
+                <p className={classes.errorMsg}>
+                  {errors.cvv && touched.cvv && errors.cvv}
+                </p>
               </div>
             </div>
             <button
@@ -535,6 +545,6 @@ export const Checkout = () => {
           </form>
         )}
       </Formik>
-      </div>
+    </div>
   );
 };

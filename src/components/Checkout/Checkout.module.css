@@ -9,11 +9,13 @@
     display: flex;
     width: 100%;
     justify-content: center;
-    height: 90vh;
+    min-height: 90vh;
     max-height: 100%;
     align-items: center;
     flex-direction: column;
+    padding: 20px 0;
 }
+
 
 .submitBtn{
     margin-top: 10px;
@@ -68,6 +70,10 @@
 
 .formGroup > div{
     margin: 5px 0;
+}
+
+.errorMsg{
+    color: red;
 }
 
 /* Dark Mode */

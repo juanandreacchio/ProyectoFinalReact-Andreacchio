@@ -8,7 +8,7 @@ export const LoginProvider = ({ children }) => {
   const [userEmail, setUserEmail] = useState('');
   const [userPhoto, setUserPhoto] = useState('');
   const [userName, setUserName] = useState('');
-  const [errorCode, setErrorCode] = useState('')
+  const [errorCode, setErrorCode] = useState('');
 
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
@@ -18,8 +18,8 @@ export const LoginProvider = ({ children }) => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        setUserEmail(result.user.email)
+        const user = result.user;
+        setUserEmail(result.user.email);
         setUserPhoto(result.user.photoURL);
         setUserName(result.user.displayName);
         setErrorCode('')
@@ -28,7 +28,6 @@ export const LoginProvider = ({ children }) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        const email = error.customData.email;
         const credential = GoogleAuthProvider.credentialFromError(error);
         // ...
       });
@@ -37,12 +36,12 @@ export const LoginProvider = ({ children }) => {
   const login = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
+        const user = userCredential.user
         setLogged(true);
         setUserPhoto(user.photoURL);
         setUserName(user.displayName);
         setUserEmail(user.email);
-        setErrorCode('')
+        setErrorCode('');
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -54,7 +53,7 @@ export const LoginProvider = ({ children }) => {
   const register = (email, password, name) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
+        const user = userCredential.user
         updateProfile(user, {
           photoURL: "https://res.cloudinary.com/dmiy7cyjx/image/upload/v1695044831/CursoReact/profilePhoto_fybqg5.png", displayName: name
         })
@@ -63,6 +62,7 @@ export const LoginProvider = ({ children }) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setErrorCode(errorCode)
       });
   };
 

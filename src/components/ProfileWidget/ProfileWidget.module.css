@@ -33,3 +33,10 @@
 .userNameNavBarDM{
     color: white;
 }
+
+.dropdownItem{
+    display: block;
+    color: black;
+    background-color: white;
+    width: 100%;
+}

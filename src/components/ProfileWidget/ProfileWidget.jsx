@@ -3,6 +3,8 @@ import { useLogIn } from "../../context/LogInContext";
 import classes from "./ProfileWidget.module.css";
 import { useMode } from "../../context/ModeContext"
 
+
+
 export const ProfileWidget = () => {
   const { logged, userName, userPhoto } = useLogIn();
 
@@ -21,11 +23,13 @@ export const ProfileWidget = () => {
       />
       </Link>
       {userName && <p className={mode === 'dark' && `${classes.userNameNavBarDM}` || ''}>{userName}</p>}
+
     </div>
   ) : (
     <>
     <div className={classes.profileWidgetContainerNoLogged}>
       <Link to='/login'><img src={mode === 'light' ? `${photoNoLoggedBlack}` : `${photoNoLoggedWhite}`} alt="" className={classes.profileImgNoLoged} /></Link>
+
       </div>
     </>
   );
