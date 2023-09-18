@@ -69,3 +69,33 @@
 .formGroup > div{
     margin: 5px 0;
 }
+
+/* Dark Mode */
+
+.checkoutContainer.checkoutContainerDM{
+    background-color: var(--dm-principal-bg);
+}
+
+.checkoutContainerDM .checkoutTitle,
+.checkoutContainerDM .inputForm{
+    color: white;
+}
+
+.checkoutContainer.checkoutContainerDM .inputForm{
+    background-color: var(--dm-principal-bg);
+    border: 1px solid white;
+}
+
+
+.checkoutContainerDM label{
+    color: white;
+}
+
+.checkoutContainerDM .submitBtn{
+    background-color: #07090c;
+    color: white;
+}
+
+.checkoutContainerDM .submitBtn:hover{
+    background-color: #020203;
+}

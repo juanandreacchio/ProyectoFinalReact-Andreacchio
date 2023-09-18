@@ -1,0 +1,31 @@
+.profileWidgetContainer{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    align-items: center;
+    flex-direction: row;
+    height: 10vh;
+    width: min-content;
+    margin-left: 15px;
+}
+
+.profileWidgetContainerNoLogged{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    align-items: center;
+    flex-direction: row;
+    height: 10vh;
+}
+
+
+.profileImg{
+    object-fit: cover;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.profileImgNoLoged{
+    width: 40%;
+    height: 100%;
+}

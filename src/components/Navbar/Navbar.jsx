@@ -4,6 +4,7 @@ import classes from './Navbar.module.css'
 import { useMode } from '../../context/ModeContext';
 import { SwitchBtn } from '../SwitchBtn/SwitchBtn';
 import { useCart } from '../../context/CartContext';
+import { ProfileWidget } from '../ProfileWidget/ProfileWidget';
 
 export const Navbar = () =>{
 
@@ -24,6 +25,7 @@ export const Navbar = () =>{
             <div className={classes.cartAndSwitch}>
             <SwitchBtn />
             {totalQuantity > 0 && <Link to='/cart'>< CartWidget /></Link>}
+            <ProfileWidget />
             </div>
         </nav>
     )
