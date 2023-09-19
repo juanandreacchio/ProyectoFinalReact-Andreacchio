@@ -12,6 +12,7 @@ import { Login } from "./components/LogIn/Login";
 import { LoginProvider } from "./context/LogInContext";
 import { Register } from "./components/Register/Register";
 import { Profile } from "./components/Profile/Profile";
+import { OrderListContainer } from "./components/OrderListContainer/OrderListContainer";
 
 export const MiContext = createContext();
 
@@ -48,6 +49,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/orders" element={<OrderListContainer />} />
             </Routes>
           </BrowserRouter>
         </CartProvider>

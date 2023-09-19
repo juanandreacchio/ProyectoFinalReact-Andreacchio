@@ -1,0 +1,16 @@
+.orderContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 40px;
+    border: 2px solid gray;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.orderTitle{
+    text-align: start;
+    width: 100%;
+    margin: 15px 0;
+}

@@ -39,10 +39,29 @@
     transition: all .3s;
     cursor: pointer;
     font-size: 15px;
+    width: 410px;
 }
 
 .logOutBtn:hover{
     background-color: rgb(189, 2, 2);
+}
+
+.ordersBtn{
+    padding: 5px 15px;
+    color: black;
+    background-color: #D3D3D3;
+    border: none;
+    border-radius: 10px;
+    transition: all .3s;
+    cursor: pointer;
+    font-size: 15px;
+    width: 410px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.ordersBtn:hover{
+    background-color: #8f8f8f;
 }
 
 /* Dark mode */
@@ -59,4 +78,13 @@
 
 .profileContainerDM .inputProfile::placeholder{
     color: white;
+}
+
+.profileContainerDM .ordersBtn{
+    background-color: #07090c;
+    color: white;
+}
+
+.profileContainerDM .ordersBtn:hover{
+    background-color: #020203;
 }

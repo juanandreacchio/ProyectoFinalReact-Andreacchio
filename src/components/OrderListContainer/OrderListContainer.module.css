@@ -1,0 +1,36 @@
+.orderListContainer{
+    padding: 10px 20px;
+    min-height: 90vh;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+}
+
+.orderListContainerDM{
+    background-color: var(--dm-principal-bg);
+    color: white;
+}
+
+.orderHistoryTitle{
+    text-align: center;
+    margin: 20px;
+}
+
+.noLoggedText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 85vh;
+}
+
+.noLoggedTextDM{
+    background-color: var(--dm-principal-bg);
+    color: white;
+}
+
+.none{
+    display: none;
+}

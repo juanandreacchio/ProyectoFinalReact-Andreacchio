@@ -11,7 +11,6 @@ import {
   addDoc,
 } from "firebase/firestore";
 import { Formik } from "formik";
-import { createRef, useState } from "react";
 import Cleave from "cleave.js/react";
 import "cleave.js/dist/addons/cleave-phone.i18n";
 import { useMode } from "../../context/ModeContext";
@@ -24,16 +23,13 @@ export const Checkout = () => {
   const { mode } = useMode();
   const { logged, userName, userEmail } = useLogIn();
 
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
 
-  const createOrder = async () => {
+  const createOrder = async (name, phone, mail) => {
     const objOrder = {
       buyer: {
         name: name,
         phone: phone,
-        email: email,
+        email: mail,
       },
       items: cart,
       total: totalPrice,
@@ -73,6 +69,8 @@ export const Checkout = () => {
       cleanCart();
     }
   };
+
+  
 
   const mostrarAlerta = (orderId) => {
     mode === "light"
@@ -146,10 +144,7 @@ export const Checkout = () => {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          setName(values.name);
-          setPhone(values.phone);
-          setEmail(values.email);
-          createOrder();
+            createOrder(values.name, values.phone, values.email);
           setSubmitting(false);
         }}
       >
@@ -340,8 +335,6 @@ export const Checkout = () => {
       <h1 className={classes.checkoutTitle}>Checkout</h1>
       <Formik
         initialValues={{
-          name: "",
-          email: "",
           phone: "",
           expiringDate: "",
           cvv: "",
@@ -373,10 +366,7 @@ export const Checkout = () => {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          userName ? setName(userName) : setName(values.name);
-          setPhone(values.phone);
-          setEmail(userEmail);
-          createOrder();
+          createOrder(userName, values.phone, userEmail);
           setSubmitting(false);
         }}
       >
@@ -412,7 +402,7 @@ export const Checkout = () => {
                     name="name"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.name}
+                    value={userName}
                     className={classes.inputForm}
                     placeholder="John Doe"
                   />
@@ -444,7 +434,7 @@ export const Checkout = () => {
                   name="email"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.email}
+                  value={userEmail}
                   className={classes.inputForm}
                   placeholder={userEmail}
                   disabled
