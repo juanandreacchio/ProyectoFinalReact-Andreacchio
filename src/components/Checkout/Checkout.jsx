@@ -16,6 +16,7 @@ import "cleave.js/dist/addons/cleave-phone.i18n";
 import { useMode } from "../../context/ModeContext";
 import Swal from "sweetalert2";
 import { useLogIn } from "../../context/LogInContext";
+import { CheckoutItem } from "../CheckoutItem/CheckoutItem";
 
 export const Checkout = () => {
   const { cart, totalPrice, cleanCart } = useCart();
@@ -98,6 +99,14 @@ export const Checkout = () => {
       }
     >
       <h1 className={classes.checkoutTitle}>Checkout</h1>
+      <div className={classes.formAndResume}>
+        <div className={mode === 'light' ? `${classes.orderResume}` : `${classes.orderResume} ${classes.orderResumeDM}`}>
+          <h2 className={classes.orderResumeTitle}>Resumen</h2>
+          {cart.map(prod =>{
+            return <CheckoutItem {...prod} />
+          })}
+          <h3 className={classes.orderResumeTotal}>Precio total: ${totalPrice}</h3>
+        </div>
       <Formik
         initialValues={{
           name: "",
@@ -323,6 +332,7 @@ export const Checkout = () => {
           </form>
         )}
       </Formik>
+      </div>
     </div>
   ) : (
     <div

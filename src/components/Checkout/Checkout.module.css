@@ -105,3 +105,30 @@
 .checkoutContainerDM .submitBtn:hover{
     background-color: #020203;
 }
+
+.formAndResume{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 20px;
+}
+
+.orderResume{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 3px solid #D3D3D3;
+}
+
+.orderResumeTitle{
+    text-align: center;
+}
+
+.orderResumeTotal{
+    text-align: right;
+    margin-top: 10px;
+}
+
+.orderResumeDM {
+    color: white;
+    border-color: white;
+}

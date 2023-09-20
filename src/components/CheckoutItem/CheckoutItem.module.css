@@ -1,0 +1,22 @@
+.checkoutItemContainer{
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    border-bottom: 1px solid #D3D3D3;
+    padding: 10px 0;
+}
+
+.checkoutItemRight{
+    display: flex;
+    flex-direction: column;
+}
+
+.checkoutItemTitle{
+    font-size: 14px;
+}
+
+.checkoutItemPrice{
+    font-size: 12px;
+    text-align: right;
+    color: #808080;
+}
