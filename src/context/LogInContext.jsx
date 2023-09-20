@@ -22,7 +22,7 @@ export const LoginProvider = ({ children }) => {
         setUserEmail(result.user.email);
         setUserPhoto(result.user.photoURL);
         setUserName(result.user.displayName);
-        setErrorCode('')
+        setErrorCode('');
         setLogged(true);
       })
       .catch((error) => {

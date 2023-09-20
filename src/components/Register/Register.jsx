@@ -78,6 +78,10 @@ export const Register = () => {
           register(values.email, values.password, values.name);
           setSubmitting(false);
           errorCode ? mostrarToastError() : mostrarToastCorrecto();
+          values.name = ""
+          values.email = ""
+          values.password = ""
+          values.passwordVVerification = ""
         }}
       >
         {({

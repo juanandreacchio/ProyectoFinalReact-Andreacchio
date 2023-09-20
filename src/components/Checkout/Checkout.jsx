@@ -154,7 +154,16 @@ export const Checkout = () => {
         }}
         onSubmit={(values, { setSubmitting }) => {
             createOrder(values.name, values.phone, values.email);
-          setSubmitting(false);
+            values.phone = ""
+            values.name = ""
+            values.email = ""
+            values.emailVerification = ""
+            values.addres = ""
+            values.cardNumber = ""
+            values.floor = ""
+            values.cvv = ""
+            values.expiringDate = ""
+            setSubmitting(false);
         }}
       >
         {({
@@ -377,6 +386,12 @@ export const Checkout = () => {
         }}
         onSubmit={(values, { setSubmitting }) => {
           createOrder(userName, values.phone, userEmail);
+          values.phone = ""
+          values.expiringDate = ""
+          values.cvv = ""
+          values.floor = ""
+          values.addres = ""
+          values.cardNumber = ""
           setSubmitting(false);
         }}
       >
