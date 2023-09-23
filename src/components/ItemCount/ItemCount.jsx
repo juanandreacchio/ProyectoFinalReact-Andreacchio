@@ -18,7 +18,7 @@ export const ItemCount = ({ stock, initial, onAdd, }) => {
 
     if (stock > 0) {
         return (
-            <div className={mode === 'dark' && `${classes.countContainerDM}` || ''}>
+            <div className={mode === 'dark' && `${classes.countContainerDM}` || `${classes.countContainer}`}>
             <div className={classes.itemCountContainer}>
                 <button onClick={decrement} className={classes.addDecBtn}>-</button>
                 <span>{quantity}</span>

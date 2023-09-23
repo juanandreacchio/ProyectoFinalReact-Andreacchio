@@ -1,0 +1,45 @@
+.footer{
+    height: 150px;
+    width: 100%;
+    background-color: #F6F8FA;
+    padding: 20px;
+    
+}
+
+
+
+.footerText{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.footerSocialMediaContainer{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.iconFooter{
+    color: black;
+    transition: all .3s;
+}
+
+.iconFooter:hover{
+    color: #9c9c9c;
+}
+
+/* Dark mode */
+
+.footerDM{
+    background-color: var(--dm-principal-bg);
+    color: white;
+}
+
+.footerDM .iconFooter{
+    color: white;
+}
+
+.footerDM .iconFooter:hover{
+    color: #212b3a;
+}

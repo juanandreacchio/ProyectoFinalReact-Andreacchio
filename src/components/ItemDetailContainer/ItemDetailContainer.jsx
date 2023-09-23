@@ -3,9 +3,8 @@ import { useParams } from "react-router-dom";
 import { ItemDetail } from "../ItemDetail/ItemDetail";
 import classes from './ItemDetailContainer.module.css'
 import { useMode } from "../../context/ModeContext";
-import { db } from '../../services/firebase/firebaseConfig';
 import { SpinnerCircular } from 'spinners-react';
-import { getDoc, doc } from "firebase/firestore";
+import { getProductsById } from "../../services/firebase/firestore/products";
 
 export const ItemDetailContainer = () =>{
     const [producto,setProducto] = useState(null);
@@ -19,16 +18,13 @@ export const ItemDetailContainer = () =>{
 
 useEffect(() =>{
     setLoading(true)
-    const productRef = doc(db, 'productos', productId)
 
-    getDoc(productRef)
-        .then(documentSnapshot =>{
-            const fields = documentSnapshot.data()
-            const productAdapted = { id: documentSnapshot.id, ...fields}
-            setProducto(productAdapted)
+    getProductsById(productId)
+        .then(product =>{
+            setProducto(product)
         })
-        .catch(error =>{
-            console.error(error)
+        .catch((error) =>{
+            console.error(error);
         })
         .finally(() =>{
             setLoading(false)

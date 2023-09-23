@@ -4,8 +4,7 @@ import classes from "./ItemListContainer.module.css";
 import { useParams } from "react-router-dom";
 import { useMode } from "../../context/ModeContext";
 import { SpinnerCircular } from "spinners-react";
-import { db } from "../../services/firebase/firebaseConfig";
-import { getDocs, collection, query, where } from "firebase/firestore";
+import { getProducts } from "../../services/firebase/firestore/products";
 
 export const ItemListContainer = (props) => {
   const [productos, setProductos] = useState([]);
@@ -16,23 +15,14 @@ export const ItemListContainer = (props) => {
   useEffect(() => {
     setLoading(true);
 
-    const productsRef = categoryId ? query(collection(db, "productos"), where('category','==',categoryId)) : collection(db, "productos");
-
-    getDocs(productsRef)
-      .then((querySnapshot) => {
-        const productsAdapted = querySnapshot.docs.map((doc) => {
-          const fields = doc.data();
-          return { id: doc.id, ...fields };
-        });
-
-        setProductos(productsAdapted);
+    getProducts(categoryId)
+      .then(products =>{
+        setProductos(products)
+      } )
+      .catch(error => console.error(error))
+      .finally(() =>{
+        setLoading(false)
       })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
 
   }, [categoryId]);
 

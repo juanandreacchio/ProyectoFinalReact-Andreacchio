@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 import classes from './Item.module.css'
 import { useMode } from '../../context/ModeContext'
 
-export const Item = ({id, price, title, img, stock}) =>{
 
+export const Item = ({id, price, title, img, stock}) =>{
 
     const { mode } = useMode();
 

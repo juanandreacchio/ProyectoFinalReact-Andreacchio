@@ -2,7 +2,9 @@
     padding: 20px;
     transition: all .3s;
     color: black;
+    position: relative;
 }
+
 
 .itemBox.dm{
     color: white;
