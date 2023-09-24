@@ -103,7 +103,7 @@ export const Checkout = () => {
         <div className={mode === 'light' ? `${classes.orderResume}` : `${classes.orderResume} ${classes.orderResumeDM}`}>
           <h2 className={classes.orderResumeTitle}>Resumen</h2>
           {cart.map(prod =>{
-            return <CheckoutItem {...prod} />
+            return <CheckoutItem {...prod} key={prod.id} />
           })}
           <h3 className={classes.orderResumeTotal}>Precio total: ${totalPrice}</h3>
         </div>
@@ -149,6 +149,9 @@ export const Checkout = () => {
             errors.phone = "Requerido";
           } else if (values.phone.length < 10) {
             errors.phone = "Número de teléfono inválido";
+          }
+          if (values.email !== values.emailVerification){
+            errors.email = "Los emails no coinciden"
           }
           return errors;
         }}

@@ -1,0 +1,12 @@
+.notFoundContainer{
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.notFoundContainerDM{
+    background-color: var(--dm-principal-bg);
+    color: white;
+}

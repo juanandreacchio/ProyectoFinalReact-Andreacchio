@@ -78,6 +78,7 @@
     font-weight: bold;
     transition: all .3s;
     cursor: pointer;
+    height: 100%;
 }
 
 .signOutBtn{

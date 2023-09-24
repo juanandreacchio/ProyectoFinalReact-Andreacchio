@@ -1,8 +1,6 @@
 import { useLogIn } from "../../context/LogInContext";
 import { Formik } from "formik";
 import classes from "./Register.module.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useMode } from "../../context/ModeContext";
 
 export const Register = () => {
@@ -10,31 +8,8 @@ export const Register = () => {
 
   const { mode } = useMode();
 
-  const mostrarToastCorrecto = () => {
-    toast.success("Usuario registrado correctamente!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
 
-  const mostrarToastError = () =>{
-    toast.error('Error al registrarse', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      });
-  }
+
 
   return (
     <div
@@ -76,7 +51,6 @@ export const Register = () => {
         }}
         onSubmit={(values, { setSubmitting }) => {
           register(values.email, values.password, values.name);
-          errorCode ? mostrarToastError() : mostrarToastCorrecto();
           values.name = ""
           values.email = ""
           values.password = ""
@@ -182,20 +156,6 @@ export const Register = () => {
           </form>
         )}
       </Formik>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      {/* Same as */}
-      <ToastContainer />
     </div>
   );
 };

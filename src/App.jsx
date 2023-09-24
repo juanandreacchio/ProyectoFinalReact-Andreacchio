@@ -14,6 +14,7 @@ import { Register } from "./components/Register/Register";
 import { Profile } from "./components/Profile/Profile";
 import { OrderListContainer } from "./components/OrderListContainer/OrderListContainer";
 import { Footer } from "./components/Footer/Footer";
+import { NotFound } from "./components/NotFound/NotFound";
 
 export const MiContext = createContext();
 
@@ -44,7 +45,7 @@ function App() {
                 path="/detail/:productId"
                 element={<ItemDetailContainer />}
               />
-              <Route path="*" element={<h1>Not Found</h1>} />
+              <Route path="*" element={<NotFound />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/login" element={<Login />} />

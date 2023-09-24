@@ -94,6 +94,11 @@
     background-color: #8f8f8f;
 }
 
+.finishOrderContainer{
+    display: flex;
+    gap: 10px;
+}
+
 /* Dark Mode */
 
 .detailDM .detailTitle,

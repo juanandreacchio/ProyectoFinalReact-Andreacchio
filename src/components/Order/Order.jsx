@@ -9,7 +9,7 @@ export const Order = ({id, items, total}) =>{
             <h3 className={classes.orderTitle}>Orden: {id}</h3>
             {items.map(item =>{
                 return(
-                    < OrderItem {...item} />
+                    < OrderItem {...item} key={item.id} />
                 )
             })}
             <h3 className={classes.orderTitle}>Total: ${total}</h3>
