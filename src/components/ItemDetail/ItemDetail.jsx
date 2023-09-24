@@ -31,7 +31,7 @@ export const ItemDetail = ({
 
   const showToast = () => {
     toast.success(`Producto agregado al carrito`, {
-      position: "top-right",
+      position: "top-left",
       autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -97,19 +97,17 @@ export const ItemDetail = ({
         <p className={classes.detailDescription}>{description}</p>
       </div>
       <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      {/* Same as */}
-      <ToastContainer />
+position="top-left"
+autoClose={2000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
     </div>
   );
 };

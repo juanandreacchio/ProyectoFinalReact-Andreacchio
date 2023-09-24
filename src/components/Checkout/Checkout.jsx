@@ -355,6 +355,14 @@ export const Checkout = () => {
       }
     >
       <h1 className={classes.checkoutTitle}>Checkout</h1>
+      <div className={classes.formAndResume}>
+        <div className={mode === 'light' ? `${classes.orderResume}` : `${classes.orderResume} ${classes.orderResumeDM}`}>
+          <h2 className={classes.orderResumeTitle}>Resumen</h2>
+          {cart.map(prod =>{
+            return <CheckoutItem {...prod} key={prod.id} />
+          })}
+          <h3 className={classes.orderResumeTotal}>Precio total: ${totalPrice}</h3>
+        </div>
       <Formik
         initialValues={{
           phone: "",
@@ -563,6 +571,7 @@ export const Checkout = () => {
           </form>
         )}
       </Formik>
+    </div>
     </div>
   );
 };
