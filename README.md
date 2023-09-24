@@ -22,6 +22,7 @@ cd ProyectoFinalReact-Andreacchio
 npm install
 npm start
 ```
+
 # Desarrollado utilizando
 - [Vite](https://vitejs.dev/)
 - [Cleave Js](https://nosir.github.io/cleave.js/)
