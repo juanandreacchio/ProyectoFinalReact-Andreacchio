@@ -15,13 +15,21 @@ Aplicación web de un Ecommerce ficticio con autenticación de usuario.
 - Generación de órdenes, checkeando que haya el stock solicitado
 - Consulta al historial de órdenes
 
-# Built Using
+# Ejecutar localmente
+```sh
+git clone https://github.com/juanandreacchio/ProyectoFinalReact-Andreacchio
+cd ProyectoFinalReact-Andreacchio
+npm install
+npm start
+```
+# Desarrollado utilizando
 - [Vite](https://vitejs.dev/)
 - [Cleave Js](https://nosir.github.io/cleave.js/)
 - [Formik](https://formik.org/)
 - [Toastify JS](https://apvarun.github.io/toastify-js/)
 - [Sweet Alert 2](https://sweetalert2.github.io/)
 - [React Spinners](https://www.davidhu.io/react-spinners/)
+- [Netlify](https://www.netlify.com/)
 
-  # Test App
+# Testear la app
   [Deploy](https://telectronics.netlify.app/)
