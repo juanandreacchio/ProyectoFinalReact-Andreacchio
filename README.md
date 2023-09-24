@@ -23,6 +23,9 @@ npm install
 npm start
 ```
 
+# Variables de entorno
+Ver [.env.example](https://github.com/juanandreacchio/ProyectoFinalReact-Andreacchio/blob/main/.env.example) para un ejemplo
+
 # Desarrollado utilizando
 - [Vite](https://vitejs.dev/)
 - [Cleave Js](https://nosir.github.io/cleave.js/)
