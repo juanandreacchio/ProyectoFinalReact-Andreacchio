@@ -76,6 +76,14 @@
     color: red;
 }
 
+.noProducts{
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Dark Mode */
 
 .checkoutContainer.checkoutContainerDM{
@@ -131,4 +139,9 @@
 .orderResumeDM {
     color: white;
     border-color: white;
+}
+
+.noProductsDM{
+    background-color: var(--dm-principal-bg);
+    color: white;
 }

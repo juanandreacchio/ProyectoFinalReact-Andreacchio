@@ -17,13 +17,13 @@ import { useMode } from "../../context/ModeContext";
 import Swal from "sweetalert2";
 import { useLogIn } from "../../context/LogInContext";
 import { CheckoutItem } from "../CheckoutItem/CheckoutItem";
+import { Link } from "react-router-dom";
 
 export const Checkout = () => {
   const { cart, totalPrice, cleanCart } = useCart();
   const db = getFirestore();
   const { mode } = useMode();
   const { logged, userName, userEmail } = useLogIn();
-
 
   const createOrder = async (name, phone, mail) => {
     const objOrder = {
@@ -71,8 +71,6 @@ export const Checkout = () => {
     }
   };
 
-  
-
   const mostrarAlerta = (orderId) => {
     mode === "light"
       ? Swal.fire({
@@ -90,488 +88,523 @@ export const Checkout = () => {
         });
   };
 
-  return !logged ? (
-    <div
-      className={
-        mode === "light"
-          ? `${classes.checkoutContainer}`
-          : `${classes.checkoutContainer} ${classes.checkoutContainerDM}`
-      }
-    >
-      <h1 className={classes.checkoutTitle}>Checkout</h1>
-      <div className={classes.formAndResume}>
-        <div className={mode === 'light' ? `${classes.orderResume}` : `${classes.orderResume} ${classes.orderResumeDM}`}>
-          <h2 className={classes.orderResumeTitle}>Resumen</h2>
-          {cart.map(prod =>{
-            return <CheckoutItem {...prod} key={prod.id} />
-          })}
-          <h3 className={classes.orderResumeTotal}>Precio total: ${totalPrice}</h3>
-        </div>
-      <Formik
-        initialValues={{
-          name: "",
-          email: "",
-          phone: "",
-          expiringDate: "",
-          cvv: "",
-          floor: "",
-          addres: "",
-          cardNumber: "",
-          emailVerification: ""
-        }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.email) {
-            errors.email = "Requerido";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = "Email inválido";
-          }
-          if (!values.name) {
-            errors.name = "Requerido";
-          }
-          if (!values.addres) {
-            errors.addres = "Requerido";
-          }
-          if (!values.cardNumber) {
-            errors.cardNumber = "Requerido";
-          } else if (values.cardNumber.length < 16) {
-            errors.cardNumber = "Número de tarjeta inválido";
-          }
-          if (!values.expiringDate) {
-            errors.expiringDate = "Requerido";
-          }
-          if (!values.cvv) {
-            errors.cvv = "Requerido";
-          }
-          if (!values.phone) {
-            errors.phone = "Requerido";
-          } else if (values.phone.length < 10) {
-            errors.phone = "Número de teléfono inválido";
-          }
-          if (values.email !== values.emailVerification){
-            errors.email = "Los emails no coinciden"
-          }
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-            createOrder(values.name, values.phone, values.email);
-            values.phone = ""
-            values.name = ""
-            values.email = ""
-            values.emailVerification = ""
-            values.addres = ""
-            values.cardNumber = ""
-            values.floor = ""
-            values.cvv = ""
-            values.expiringDate = ""
-            setSubmitting(false);
-        }}
+  return cart.length > 0 ? (
+    !logged ? (
+      <div
+        className={
+          mode === "light"
+            ? `${classes.checkoutContainer}`
+            : `${classes.checkoutContainer} ${classes.checkoutContainerDM}`
+        }
       >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-          /* and other goodies */
-        }) => (
-          <form onSubmit={handleSubmit}>
-            <div className={classes.formGroup}>
-              {" "}
-              {/* Nombre y Apellido */}
-              <div>
-                <label htmlFor="name">Nombre y Apellido</label>
-                <input
-                  type="text"
-                  name="name"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.name}
-                  className={classes.inputForm}
-                  placeholder="John Doe"
-                />
-                <p className={classes.errorMsg}>
-                  {errors.name && touched.name && errors.name}
-                </p>
-              </div>
-              <div>
-                <label htmlFor="phone">Teléfono</label>
-                <Cleave
-                  placeholder="11 1234 5678"
-                  options={{ phone: true, phoneRegionCode: "AR" }}
-                  className={classes.inputForm}
-                  name="phone"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.phone}
-                />
-                <p className={classes.errorMsg}>
-                  {errors.phone && touched.phone && errors.phone}
-                </p>
-              </div>
-            </div>
-            <div className={classes.formGroup}>
-              {" "}
-              {/* Email y Teléfono */}
-              <div>
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.email}
-                  className={classes.inputForm}
-                  placeholder="email@email.com"
-                />
-                <p className={classes.errorMsg}>
-                  {errors.email && touched.email && errors.email}
-                </p>
-              </div>
-              <div>
-                <label htmlFor="emailVerification">Verificación de email</label>
-                <input
-                  type="email"
-                  name="emailVerification"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.emailVerification}
-                  className={classes.inputForm}
-                  placeholder="email@email.com"
-                />
-                <p className={classes.errorMsg}>
-                  {errors.emailVerification &&
-                    touched.emailVerification &&
-                    errors.emailVerification}
-                </p>
-              </div>
-            </div>
-            <div className={classes.formGroup}>
-              {" "}
-              {/* Dirección y Piso */}
-              <div>
-                <label htmlFor="addres">Dirección</label>
-                <input
-                  type="text"
-                  name="addres"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.addres}
-                  className={classes.inputForm}
-                  placeholder="Calle 123"
-                />
-                <p className={classes.errorMsg}>
-                  {errors.addres && touched.addres && errors.addres}
-                </p>
-              </div>
-              <div>
-                <label htmlFor="floor">Piso (Opcional)</label>
-                <input
-                  type="text"
-                  name="floor"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.floor}
-                  className={classes.inputForm}
-                  placeholder="5 A"
-                />
-              </div>
-            </div>
-            <div>
-              {" "}
-              {/* Número de tarjeta */}
-              <label htmlFor="cardNumber">Número de tarjeta</label>
-              <Cleave
-                className={`${classes.inputForm} ${classes.inputCard}`}
-                placeholder="1234 5678 90123 4567"
-                options={{ creditCard: true }}
-                name="cardNumber"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.cardNumber}
-              />
-              <p className={classes.errorMsg}>
-                {errors.cardNumber && touched.cardNumber && errors.cardNumber}
-              </p>
-            </div>
-            <div className={classes.formGroup}>
-              {" "}
-              {/* Expiring y CVV */}
-              <div>
-                <label htmlFor="expiringDate">Fecha de vencimiento</label>
-                <Cleave
-                  placeholder="MM/YY"
-                  options={{ date: true, datePattern: ["m", "y"] }}
-                  className={classes.inputForm}
-                  name="expiringDate"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.expiringDate}
-                />
-                <p className={classes.errorMsg}>
-                  {errors.expiringDate &&
-                    touched.expiringDate &&
-                    errors.expiringDate}
-                </p>
-              </div>
-              <div>
-                <label htmlFor="cvv">CVV</label>
-                <Cleave
-                  placeholder="123"
-                  options={{ blocks: [4], uppercase: "true" }}
-                  className={classes.inputForm}
-                  name="cvv"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.cvv}
-                />
-                <p className={classes.errorMsg}>
-                  {errors.cvv && touched.cvv && errors.cvv}
-                </p>
-              </div>
-            </div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={classes.submitBtn}
-            >
-              Confirmar compra
-            </button>
-          </form>
-        )}
-      </Formik>
+        <h1 className={classes.checkoutTitle}>Checkout</h1>
+        <div className={classes.formAndResume}>
+          <div
+            className={
+              mode === "light"
+                ? `${classes.orderResume}`
+                : `${classes.orderResume} ${classes.orderResumeDM}`
+            }
+          >
+            <h2 className={classes.orderResumeTitle}>Resumen</h2>
+            {cart.map((prod) => {
+              return <CheckoutItem {...prod} key={prod.id} />;
+            })}
+            <h3 className={classes.orderResumeTotal}>
+              Precio total: ${totalPrice}
+            </h3>
+          </div>
+          <Formik
+            initialValues={{
+              name: "",
+              email: "",
+              phone: "",
+              expiringDate: "",
+              cvv: "",
+              floor: "",
+              addres: "",
+              cardNumber: "",
+              emailVerification: "",
+            }}
+            validate={(values) => {
+              const errors = {};
+              if (!values.email) {
+                errors.email = "Requerido";
+              } else if (
+                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+              ) {
+                errors.email = "Email inválido";
+              }
+              if (!values.name) {
+                errors.name = "Requerido";
+              }
+              if (!values.addres) {
+                errors.addres = "Requerido";
+              }
+              if (!values.cardNumber) {
+                errors.cardNumber = "Requerido";
+              } else if (values.cardNumber.length < 16) {
+                errors.cardNumber = "Número de tarjeta inválido";
+              }
+              if (!values.expiringDate) {
+                errors.expiringDate = "Requerido";
+              }
+              if (!values.cvv) {
+                errors.cvv = "Requerido";
+              }
+              if (!values.phone) {
+                errors.phone = "Requerido";
+              } else if (values.phone.length < 10) {
+                errors.phone = "Número de teléfono inválido";
+              }
+              if (values.email !== values.emailVerification) {
+                errors.email = "Los emails no coinciden";
+              }
+              return errors;
+            }}
+            onSubmit={(values, { setSubmitting }) => {
+              createOrder(values.name, values.phone, values.email);
+              values.phone = "";
+              values.name = "";
+              values.email = "";
+              values.emailVerification = "";
+              values.addres = "";
+              values.cardNumber = "";
+              values.floor = "";
+              values.cvv = "";
+              values.expiringDate = "";
+              setSubmitting(false);
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting,
+              /* and other goodies */
+            }) => (
+              <form onSubmit={handleSubmit}>
+                <div className={classes.formGroup}>
+                  {" "}
+                  {/* Nombre y Apellido */}
+                  <div>
+                    <label htmlFor="name">Nombre y Apellido</label>
+                    <input
+                      type="text"
+                      name="name"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.name}
+                      className={classes.inputForm}
+                      placeholder="John Doe"
+                    />
+                    <p className={classes.errorMsg}>
+                      {errors.name && touched.name && errors.name}
+                    </p>
+                  </div>
+                  <div>
+                    <label htmlFor="phone">Teléfono</label>
+                    <Cleave
+                      placeholder="11 1234 5678"
+                      options={{ phone: true, phoneRegionCode: "AR" }}
+                      className={classes.inputForm}
+                      name="phone"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.phone}
+                    />
+                    <p className={classes.errorMsg}>
+                      {errors.phone && touched.phone && errors.phone}
+                    </p>
+                  </div>
+                </div>
+                <div className={classes.formGroup}>
+                  {" "}
+                  {/* Email y Teléfono */}
+                  <div>
+                    <label htmlFor="email">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.email}
+                      className={classes.inputForm}
+                      placeholder="email@email.com"
+                    />
+                    <p className={classes.errorMsg}>
+                      {errors.email && touched.email && errors.email}
+                    </p>
+                  </div>
+                  <div>
+                    <label htmlFor="emailVerification">
+                      Verificación de email
+                    </label>
+                    <input
+                      type="email"
+                      name="emailVerification"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.emailVerification}
+                      className={classes.inputForm}
+                      placeholder="email@email.com"
+                    />
+                    <p className={classes.errorMsg}>
+                      {errors.emailVerification &&
+                        touched.emailVerification &&
+                        errors.emailVerification}
+                    </p>
+                  </div>
+                </div>
+                <div className={classes.formGroup}>
+                  {" "}
+                  {/* Dirección y Piso */}
+                  <div>
+                    <label htmlFor="addres">Dirección</label>
+                    <input
+                      type="text"
+                      name="addres"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.addres}
+                      className={classes.inputForm}
+                      placeholder="Calle 123"
+                    />
+                    <p className={classes.errorMsg}>
+                      {errors.addres && touched.addres && errors.addres}
+                    </p>
+                  </div>
+                  <div>
+                    <label htmlFor="floor">Piso (Opcional)</label>
+                    <input
+                      type="text"
+                      name="floor"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.floor}
+                      className={classes.inputForm}
+                      placeholder="5 A"
+                    />
+                  </div>
+                </div>
+                <div>
+                  {" "}
+                  {/* Número de tarjeta */}
+                  <label htmlFor="cardNumber">Número de tarjeta</label>
+                  <Cleave
+                    className={`${classes.inputForm} ${classes.inputCard}`}
+                    placeholder="1234 5678 90123 4567"
+                    options={{ creditCard: true }}
+                    name="cardNumber"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.cardNumber}
+                  />
+                  <p className={classes.errorMsg}>
+                    {errors.cardNumber &&
+                      touched.cardNumber &&
+                      errors.cardNumber}
+                  </p>
+                </div>
+                <div className={classes.formGroup}>
+                  {" "}
+                  {/* Expiring y CVV */}
+                  <div>
+                    <label htmlFor="expiringDate">Fecha de vencimiento</label>
+                    <Cleave
+                      placeholder="MM/YY"
+                      options={{ date: true, datePattern: ["m", "y"] }}
+                      className={classes.inputForm}
+                      name="expiringDate"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.expiringDate}
+                    />
+                    <p className={classes.errorMsg}>
+                      {errors.expiringDate &&
+                        touched.expiringDate &&
+                        errors.expiringDate}
+                    </p>
+                  </div>
+                  <div>
+                    <label htmlFor="cvv">CVV</label>
+                    <Cleave
+                      placeholder="123"
+                      options={{ blocks: [4], uppercase: "true" }}
+                      className={classes.inputForm}
+                      name="cvv"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.cvv}
+                    />
+                    <p className={classes.errorMsg}>
+                      {errors.cvv && touched.cvv && errors.cvv}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={classes.submitBtn}
+                >
+                  Confirmar compra
+                </button>
+              </form>
+            )}
+          </Formik>
+        </div>
       </div>
-    </div>
+    ) : (
+      <div
+        className={
+          mode === "light"
+            ? `${classes.checkoutContainer}`
+            : `${classes.checkoutContainer} ${classes.checkoutContainerDM}`
+        }
+      >
+        <h1 className={classes.checkoutTitle}>Checkout</h1>
+        <div className={classes.formAndResume}>
+          <div
+            className={
+              mode === "light"
+                ? `${classes.orderResume}`
+                : `${classes.orderResume} ${classes.orderResumeDM}`
+            }
+          >
+            <h2 className={classes.orderResumeTitle}>Resumen</h2>
+            {cart.map((prod) => {
+              return <CheckoutItem {...prod} key={prod.id} />;
+            })}
+            <h3 className={classes.orderResumeTotal}>
+              Precio total: ${totalPrice}
+            </h3>
+          </div>
+          <Formik
+            initialValues={{
+              phone: "",
+              expiringDate: "",
+              cvv: "",
+              floor: "",
+              addres: "",
+              cardNumber: "",
+            }}
+            validate={(values) => {
+              const errors = {};
+              if (!values.addres) {
+                errors.addres = "Requerido";
+              }
+              if (!values.cardNumber) {
+                errors.cardNumber = "Requerido";
+              } else if (values.cardNumber.length < 16) {
+                errors.cardNumber = "Número de tarjeta inválido";
+              }
+              if (!values.expiringDate) {
+                errors.expiringDate = "Requerido";
+              }
+              if (!values.cvv) {
+                errors.cvv = "Requerido";
+              }
+              if (!values.phone) {
+                errors.phone = "Requerido";
+              } else if (values.phone.length < 10) {
+                errors.phone = "Número de teléfono inválido";
+              }
+              return errors;
+            }}
+            onSubmit={(values, { setSubmitting }) => {
+              createOrder(userName, values.phone, userEmail);
+              values.phone = "";
+              values.expiringDate = "";
+              values.cvv = "";
+              values.floor = "";
+              values.addres = "";
+              values.cardNumber = "";
+              setSubmitting(false);
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting,
+              /* and other goodies */
+            }) => (
+              <form onSubmit={handleSubmit}>
+                <div className={classes.formGroup}>
+                  {/* Nombre y Apellido */}
+                  <div>
+                    <label htmlFor="name">Nombre y apellido</label>
+                    {userName ? (
+                      <input
+                        type="text"
+                        name="name"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.name}
+                        className={classes.inputForm}
+                        placeholder={userName}
+                        disabled
+                      />
+                    ) : (
+                      <input
+                        type="text"
+                        name="name"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={userName}
+                        className={classes.inputForm}
+                        placeholder="John Doe"
+                      />
+                    )}
+                  </div>
+                </div>
+                <div className={classes.formGroup}>
+                  {" "}
+                  {/* Email y Teléfono */}
+                  <div>
+                    <label htmlFor="phone">Teléfono</label>
+                    <Cleave
+                      placeholder="11 1234 5678"
+                      options={{ phone: true, phoneRegionCode: "AR" }}
+                      className={classes.inputForm}
+                      name="phone"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.phone}
+                    />
+                    <p className={classes.errorMsg}>
+                      {errors.phone && touched.phone && errors.phone}
+                    </p>
+                  </div>
+                  <div>
+                    <label htmlFor="email">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={userEmail}
+                      className={classes.inputForm}
+                      placeholder={userEmail}
+                      disabled
+                    />
+                  </div>
+                </div>
+                <div className={classes.formGroup}>
+                  {" "}
+                  {/* Dirección y Piso */}
+                  <div>
+                    <label htmlFor="addres">Dirección</label>
+                    <input
+                      type="text"
+                      name="addres"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.addres}
+                      className={classes.inputForm}
+                      placeholder="Calle 123"
+                    />
+                    <p className={classes.errorMsg}>
+                      {errors.addres && touched.addres && errors.addres}
+                    </p>
+                  </div>
+                  <div>
+                    <label htmlFor="floor">Piso (Opcional)</label>
+                    <input
+                      type="text"
+                      name="floor"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.floor}
+                      className={classes.inputForm}
+                      placeholder="5 A"
+                    />
+                  </div>
+                </div>
+                <div>
+                  {" "}
+                  {/* Número de tarjeta */}
+                  <label htmlFor="cardNumber">Número de tarjeta</label>
+                  <Cleave
+                    className={`${classes.inputForm} ${classes.inputCard}`}
+                    placeholder="1234 5678 90123 4567"
+                    options={{ creditCard: true }}
+                    name="cardNumber"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.cardNumber}
+                  />
+                  <p className={classes.errorMsg}>
+                    {errors.cardNumber &&
+                      touched.cardNumber &&
+                      errors.cardNumber}
+                  </p>
+                </div>
+                <div className={classes.formGroup}>
+                  {" "}
+                  {/* Expiring y CVV */}
+                  <div>
+                    <label htmlFor="expiringDate">Fecha de vencimiento</label>
+                    <Cleave
+                      placeholder="MM/YY"
+                      options={{ date: true, datePattern: ["m", "y"] }}
+                      className={classes.inputForm}
+                      name="expiringDate"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.expiringDate}
+                    />
+                    <p className={classes.errorMsg}>
+                      {errors.expiringDate &&
+                        touched.expiringDate &&
+                        errors.expiringDate}
+                    </p>
+                  </div>
+                  <div>
+                    <label htmlFor="cvv">CVV</label>
+                    <Cleave
+                      placeholder="123"
+                      options={{ blocks: [4], uppercase: "true" }}
+                      className={classes.inputForm}
+                      name="cvv"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.cvv}
+                    />
+                    <p className={classes.errorMsg}>
+                      {errors.cvv && touched.cvv && errors.cvv}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={classes.submitBtn}
+                >
+                  Confirmar compra
+                </button>
+              </form>
+            )}
+          </Formik>
+        </div>
+      </div>
+    )
   ) : (
     <div
       className={
         mode === "light"
-          ? `${classes.checkoutContainer}`
-          : `${classes.checkoutContainer} ${classes.checkoutContainerDM}`
+          ? `${classes.noProducts}`
+          : `${classes.noProducts} ${classes.noProductsDM}`
       }
     >
-      <h1 className={classes.checkoutTitle}>Checkout</h1>
-      <div className={classes.formAndResume}>
-        <div className={mode === 'light' ? `${classes.orderResume}` : `${classes.orderResume} ${classes.orderResumeDM}`}>
-          <h2 className={classes.orderResumeTitle}>Resumen</h2>
-          {cart.map(prod =>{
-            return <CheckoutItem {...prod} key={prod.id} />
-          })}
-          <h3 className={classes.orderResumeTotal}>Precio total: ${totalPrice}</h3>
-        </div>
-      <Formik
-        initialValues={{
-          phone: "",
-          expiringDate: "",
-          cvv: "",
-          floor: "",
-          addres: "",
-          cardNumber: "",
-        }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.addres) {
-            errors.addres = "Requerido";
-          }
-          if (!values.cardNumber) {
-            errors.cardNumber = "Requerido";
-          } else if (values.cardNumber.length < 16) {
-            errors.cardNumber = "Número de tarjeta inválido";
-          }
-          if (!values.expiringDate) {
-            errors.expiringDate = "Requerido";
-          }
-          if (!values.cvv) {
-            errors.cvv = "Requerido";
-          }
-          if (!values.phone) {
-            errors.phone = "Requerido";
-          } else if (values.phone.length < 10) {
-            errors.phone = "Número de teléfono inválido";
-          }
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          createOrder(userName, values.phone, userEmail);
-          values.phone = ""
-          values.expiringDate = ""
-          values.cvv = ""
-          values.floor = ""
-          values.addres = ""
-          values.cardNumber = ""
-          setSubmitting(false);
-        }}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-          /* and other goodies */
-        }) => (
-          <form onSubmit={handleSubmit}>
-            <div className={classes.formGroup}>
-              {/* Nombre y Apellido */}
-              <div>
-                <label htmlFor="name">Nombre y apellido</label>
-                {userName ? (
-                  <input
-                    type="text"
-                    name="name"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.name}
-                    className={classes.inputForm}
-                    placeholder={userName}
-                    disabled
-                  />
-                ) : (
-                  <input
-                    type="text"
-                    name="name"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={userName}
-                    className={classes.inputForm}
-                    placeholder="John Doe"
-                  />
-                )}
-              </div>
-            </div>
-            <div className={classes.formGroup}>
-              {" "}
-              {/* Email y Teléfono */}
-              <div>
-                <label htmlFor="phone">Teléfono</label>
-                <Cleave
-                  placeholder="11 1234 5678"
-                  options={{ phone: true, phoneRegionCode: "AR" }}
-                  className={classes.inputForm}
-                  name="phone"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.phone}
-                />
-                <p className={classes.errorMsg}>
-                  {errors.phone && touched.phone && errors.phone}
-                </p>
-              </div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={userEmail}
-                  className={classes.inputForm}
-                  placeholder={userEmail}
-                  disabled
-                />
-              </div>
-            </div>
-            <div className={classes.formGroup}>
-              {" "}
-              {/* Dirección y Piso */}
-              <div>
-                <label htmlFor="addres">Dirección</label>
-                <input
-                  type="text"
-                  name="addres"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.addres}
-                  className={classes.inputForm}
-                  placeholder="Calle 123"
-                />
-                <p className={classes.errorMsg}>
-                  {errors.addres && touched.addres && errors.addres}
-                </p>
-              </div>
-              <div>
-                <label htmlFor="floor">Piso (Opcional)</label>
-                <input
-                  type="text"
-                  name="floor"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.floor}
-                  className={classes.inputForm}
-                  placeholder="5 A"
-                />
-              </div>
-            </div>
-            <div>
-              {" "}
-              {/* Número de tarjeta */}
-              <label htmlFor="cardNumber">Número de tarjeta</label>
-              <Cleave
-                className={`${classes.inputForm} ${classes.inputCard}`}
-                placeholder="1234 5678 90123 4567"
-                options={{ creditCard: true }}
-                name="cardNumber"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.cardNumber}
-              />
-              <p className={classes.errorMsg}>
-                {errors.cardNumber && touched.cardNumber && errors.cardNumber}
-              </p>
-            </div>
-            <div className={classes.formGroup}>
-              {" "}
-              {/* Expiring y CVV */}
-              <div>
-                <label htmlFor="expiringDate">Fecha de vencimiento</label>
-                <Cleave
-                  placeholder="MM/YY"
-                  options={{ date: true, datePattern: ["m", "y"] }}
-                  className={classes.inputForm}
-                  name="expiringDate"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.expiringDate}
-                />
-                <p className={classes.errorMsg}>
-                  {errors.expiringDate &&
-                    touched.expiringDate &&
-                    errors.expiringDate}
-                </p>
-              </div>
-              <div>
-                <label htmlFor="cvv">CVV</label>
-                <Cleave
-                  placeholder="123"
-                  options={{ blocks: [4], uppercase: "true" }}
-                  className={classes.inputForm}
-                  name="cvv"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.cvv}
-                />
-                <p className={classes.errorMsg}>
-                  {errors.cvv && touched.cvv && errors.cvv}
-                </p>
-              </div>
-            </div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={classes.submitBtn}
-            >
-              Confirmar compra
-            </button>
-          </form>
-        )}
-      </Formik>
-    </div>
+      <h1>No hay productos en el carrito</h1>
+      <Link to="/">Volver al inicio</Link>
     </div>
   );
 };
