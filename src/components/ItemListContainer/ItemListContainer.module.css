@@ -3,11 +3,24 @@
     padding: 20px;
 }
 
+.noCategoryContainer{
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Dark Mode*/
 
 .itemListDm > .greetingMsg{
     background-color: #0D1117;
     color: white;
+}
+
+.noCategoryContainerDM{
+    color: white;
+    background-color: var(--dm-principal-bg);
 }
 
 
