@@ -14,7 +14,7 @@ Aplicación web de un Ecommerce ficticio con autenticación de usuario.
 - Ingreso y registro de usuarios tanto por correo electrónico como por Google
 - Generación de órdenes, checkeando que haya el stock solicitado
 - Consulta al historial de órdenes
-[Ejemplo de uso](https://youtu.be/tCLC-1LhdcE)
+- [Ejemplo de uso](https://youtu.be/tCLC-1LhdcE)
 
 # Ejecutar localmente
 ```sh
