@@ -14,6 +14,7 @@ Aplicación web de un Ecommerce ficticio con autenticación de usuario.
 - Ingreso y registro de usuarios tanto por correo electrónico como por Google
 - Generación de órdenes, checkeando que haya el stock solicitado
 - Consulta al historial de órdenes
+[Ejemplo de uso](https://youtu.be/tCLC-1LhdcE)
 
 # Ejecutar localmente
 ```sh
@@ -34,6 +35,8 @@ Ver [.env.example](https://github.com/juanandreacchio/ProyectoFinalReact-Andreac
 - [Sweet Alert 2](https://sweetalert2.github.io/)
 - [React Spinners](https://www.davidhu.io/react-spinners/)
 - [Netlify](https://www.netlify.com/)
+
+
 
 # Testear la app
   [Deploy](https://telectronics.netlify.app/)
