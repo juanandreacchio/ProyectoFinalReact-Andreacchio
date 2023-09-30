@@ -14,8 +14,7 @@ Aplicación web de un Ecommerce ficticio con autenticación de usuario.
 - Ingreso y registro de usuarios tanto por correo electrónico como por Google
 - Generación de órdenes, checkeando que haya el stock solicitado
 - Consulta al historial de órdenes
-
-![unknown_2023 09 29-22 02_1](https://github.com/juanandreacchio/ProyectoFinalReact-Andreacchio/assets/123515437/62d207ca-55ca-42d1-b575-41e47f1ded86)
+![prueba](https://github.com/juanandreacchio/ProyectoFinalReact-Andreacchio/assets/123515437/36e60b7a-80ef-4d1e-a6e8-30d82d4f8012)
 
 
 # Ejecutar localmente
