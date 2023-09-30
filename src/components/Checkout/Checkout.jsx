@@ -18,14 +18,18 @@ import Swal from "sweetalert2";
 import { useLogIn } from "../../context/LogInContext";
 import { CheckoutItem } from "../CheckoutItem/CheckoutItem";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { SpinnerCircular } from 'spinners-react';
 
 export const Checkout = () => {
   const { cart, totalPrice, cleanCart } = useCart();
   const db = getFirestore();
   const { mode } = useMode();
   const { logged, userName, userEmail } = useLogIn();
+  const [loading, setLoading] = useState(false)
 
   const createOrder = async (name, phone, mail) => {
+    setLoading(true)
     const objOrder = {
       buyer: {
         name: name,
@@ -48,6 +52,7 @@ export const Checkout = () => {
     const { docs } = await getDocs(productsRef);
 
     docs.forEach((doc) => {
+      
       const fields = doc.data();
       const stockDisponible = fields.stock;
 
@@ -65,9 +70,10 @@ export const Checkout = () => {
       const orderRef = collection(db, "orders");
       const { id: orderId } = await addDoc(orderRef, objOrder);
 
+      cleanCart();
+      setLoading(false)
       mostrarAlerta(orderId);
       batch.commit();
-      cleanCart();
     }
   };
 
@@ -88,7 +94,7 @@ export const Checkout = () => {
         });
   };
 
-  return cart.length > 0 ? (
+  return loading ? <SpinnerCircular size="20%" color='black' style={{width: '100%', margin: '0 auto', height: '200px', marginTop: '50px'}}/> : (cart.length > 0 ? (
     !logged ? (
       <div
         className={
@@ -606,5 +612,6 @@ export const Checkout = () => {
       <h1>No hay productos en el carrito</h1>
       <Link to="/">Volver al inicio</Link>
     </div>
+    )
   );
 };
