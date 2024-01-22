@@ -24,7 +24,8 @@ Aplicación web de un Ecommerce ficticio con autenticación de usuario.
 git clone https://github.com/juanandreacchio/ProyectoFinalReact-Andreacchio
 cd ProyectoFinalReact-Andreacchio
 npm install
-npm start
+npm run dev
+o
 ```
 
 # Variables de entorno
